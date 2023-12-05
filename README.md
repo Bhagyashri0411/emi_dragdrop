@@ -13,12 +13,3 @@ npm install
 npm start
 ```
 run [Project on localhost 3000](http://localhost:3000/)
-
-
-## How to run project with docker
-
-```bash
-docker-compose up
-```
-
-run [Project on localhost 3000](http://localhost:3000/)
