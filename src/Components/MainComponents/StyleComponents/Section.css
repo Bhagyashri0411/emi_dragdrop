@@ -1,0 +1,32 @@
+.blockflex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 5px 15px;
+}
+
+.blockflex .block {
+    display: flex;
+    gap: 5px;
+}
+
+.blockdisplay{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.blockdisplay h6{
+    border-bottom: 0 !important;
+}
+.blockflex .block span, .blockdisplay h6 {
+    font-size: 16px;
+    border-bottom: 2px solid ;
+    font-weight: 500;
+}
+
+
+.blockflex .block input {
+    width: 100%;
+}

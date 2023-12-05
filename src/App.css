@@ -1,0 +1,35 @@
+@import '~mdb-ui-kit/css/mdb.min.css';
+
+.mainLayout {
+  display: flex;
+  width: 100%;
+  /* margin-left: -15px;
+  margin-right: -15px; */
+}
+
+img {
+  max-width: 100%;
+  border-radius: 3px;
+}
+
+.fisrtColumn {
+
+  margin-left: -15px;
+  background-color: var(--sidebarbg);
+}
+
+.thirdColumn {
+  margin-right: -12px;
+  background-color: var(--white);
+}
+
+
+/* main */
+.card{
+  border-radius: 2px;
+  height: 100vh;
+
+}
+.card .card-body {
+  padding: 15px 15px 10px !important;
+}
