@@ -20,8 +20,6 @@ const HomeMainSection = (props) => {
     };
 
 
-
-
     const handleMouseUp = () => {
         setDragging(false);
         props.setSelectedBox(null);
@@ -38,8 +36,6 @@ const HomeMainSection = (props) => {
         });
     };
 
-
-
     return (
         <div className='containerbox' id='code' onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
 
@@ -55,20 +51,26 @@ const HomeMainSection = (props) => {
                                         top: box.position.y,
                                         left: box.position.x,
                                         border: props.selectedBox === box.id ? '2px solid red' : '1px solid black',
-                                        borderRadius: box.style.border_radius
+                                        borderRadius: `${box.dimensions.border_radius}px`,
+                                        backgroundColor:box.dimensions.bg
                                     }}
                                     onClick={(e) => props.handleMouseClick(e, box.id)}
                                     onMouseDown={(e) => handleMouseDown(e, box.id)}
                                 >
-                                    <div className=""
+                                    <div
                                         style={{
                                             padding: box.dimensions.padding,
-                                            width: box.dimensions.width,
-                                            height: box.dimensions.height,
+                                            width: `${box.dimensions.width}${box.unit.width}`,
+                                            height: `${box.dimensions.height}${box.unit.height}`,
                                         }}
                                     >
-
-                                        {box.text} {key}
+                                        <p style={{
+                                            fontSize: `${box.textstyle.fontSize}px`,
+                                            fontWeight: box.textstyle.fontWeight,
+                                            color:box.textstyle.tcolor
+                                        }}>
+                                            {box.textstyle.text} {key}
+                                        </p>
                                     </div>
                                 </div >
 
@@ -77,7 +79,7 @@ const HomeMainSection = (props) => {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
 
     )
 }

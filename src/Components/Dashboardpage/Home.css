@@ -11,3 +11,6 @@
     cursor: pointer;
     border: 1px solid #999;
 }
+.grid-item{
+    border: 1px solid;
+}

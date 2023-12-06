@@ -3,25 +3,21 @@ import IconButton from '@mui/material/IconButton';
 
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
-import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CodeIcon from '@mui/icons-material/Code';
 
-import routes from "../../routes";
 import { useState } from "react";
 
 
-const Sidebar = ({ open, handleFun, handleAddBox }) => {
+const Sidebar = ({ open, handleFun, handleAddBox, ...props }) => {
 
     const [clickedDiv, setClickedDiv] = useState(null);
 
     const handleDivClick = (divId) => {
         setClickedDiv(divId);
     };
-
-    // declare const values
-    const [opendrop, setOpendrop] = React.useState({});
-
-
 
 
     return (
@@ -44,30 +40,20 @@ const Sidebar = ({ open, handleFun, handleAddBox }) => {
 
                     <hr className="" style={{ borderColor: 'white' }} /> */}
                     <ul className="uistyle">
-                        {routes.map((item, key) => (<>
+                        <li className={`listyle mt-3 ${clickedDiv === 'div1' ? 'checked' : ''}`}
+                            onClick={() => handleDivClick('div1')}>
 
-                            {
-
-                                <li className={`listyle mt-3 ${clickedDiv === item.div ? 'checked' : ''}`}
-                                    onClick={() => handleDivClick(item.div)} key={key}
-                                >
-
-                                    <div className="lifirstDiv" onClick={handleAddBox}>
-                                        <div className="liIcon" >
-                                            {item.icon}
-                                        </div>
-                                        <div className={`litext ${open ? "d-flex" : "d-none"}`}>
-                                            <h6 className="h6">
-                                                {item.name}
-                                            </h6>
-                                            {item.collapse && (opendrop === key ? <ArrowDropUpOutlinedIcon /> : <ArrowDropDownOutlinedIcon />)}
-                                        </div>
-                                    </div>
-                                </li>
-                            }
-
-                        </>
-                        ))}
+                            <div className="lifirstDiv" onClick={handleAddBox}>
+                                <div className="liIcon" >
+                                    <CodeIcon />
+                                </div>
+                                <div className={`litext ${open ? "d-flex" : "d-none"}`}>
+                                    <h6 className="h6">
+                                        Cards
+                                    </h6>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div className="firstDive">
@@ -84,7 +70,7 @@ const Sidebar = ({ open, handleFun, handleAddBox }) => {
                         </IconButton>
                     </div>
                 </div>
-            </div>
+            </div >
 
         </>
     )

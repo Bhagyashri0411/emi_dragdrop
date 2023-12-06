@@ -11,6 +11,7 @@ const Main = () => {
     const [open, setOpen] = React.useState(true);
     const [openStyleBox, setOpenStyleBox] = React.useState(true);
 
+    // const for card
     const [boxes, setBoxes] = useState([]);
     const [selectedBox, setSelectedBox] = useState(null);
 
@@ -24,16 +25,25 @@ const Main = () => {
         setOpenStyleBox(!openStyleBox);
     }
 
+    // Add Card
     const handleAddBox = () => {
         const newBox = {
             id: Date.now(),
-            text: "cardvgh",
             position: { x: 0, y: 0 },
-            dimensions: { width: 100, height: 100, padding: 5 },
-            style: { border_radius: 10 }
+            dimensions: { width: 100, height: 100, padding: 5, border_radius: "10", bg: "blue" },
+            unit: { width: "px", height: "px" },
+
+            textstyle: {
+                text: "cardvgh",
+                fontSize: 15, fontWeight: 500,
+                tcolor: "white"
+            }
         };
+
+
         setBoxes([...boxes, newBox]);
     };
+
 
     const handleMouseClick = (e, id) => {
         setSelectedBox(id);
@@ -49,7 +59,8 @@ const Main = () => {
                             style={{ width: open ? width : '' }}>
                             <Sidebar open={open}
                                 handleFun={handleOpenandCloseDrawer}
-                                handleAddBox={handleAddBox} />
+                                handleAddBox={handleAddBox}
+                            />
                         </div>
                         <div className='secondColumn' style={{ width: open ? `calc(100% - ${width})` : '100%' }}>
                             <div className='pt-3'>
@@ -64,7 +75,9 @@ const Main = () => {
 
                         </div>
                         <div className='thirdColumn' style={{ width: openStyleBox ? "0" : "350px" }}>
-                            <StyleComponent handleFun={handleOpenandCloseStyleDrawer} open={openStyleBox}
+                            <StyleComponent
+                                handleFun={handleOpenandCloseStyleDrawer}
+                                open={openStyleBox}
                                 boxes={boxes}
                                 setBoxes={setBoxes}
                                 selectedBox={selectedBox}
