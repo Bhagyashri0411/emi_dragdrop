@@ -1,8 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
+import Border from './Border';
 
 export default function BlockSection(props) {
-    const [borderRadius, setBorderRadius] = useState(0);
+
 
 
     const handleEditChange = (e, id, property) => {
@@ -10,21 +10,15 @@ export default function BlockSection(props) {
         const index = updatedBoxes.findIndex((box) => box.id === id);
         if (index !== -1) {
             if (property.includes('dimensions')) {
-                updatedBoxes[index].dimensions[property.split('.')[1]] = parseInt(e.target.value) || 0;
+                updatedBoxes[index].dimensions[property.split('.')[1]] = e.target.value;
             } else if (property.includes('position')) {
                 updatedBoxes[index].position[property.split('.')[1]] = parseInt(e.target.value) || 0;
             }
-            else if (property.includes('style')) {
-                updatedBoxes[index].style[property.split('.')[1]] = parseInt(e.target.value) || 0;
+            else if (property.includes('units')) {
+                updatedBoxes[index].unit[property.split('.')[1]] = e.target.value;
             }
             props.setBoxes(updatedBoxes);
         }
-    };
-
-    // Function to handle changes in the range input
-    const handleBorderRadiusChange = (e) => {
-        const value = e.target.value;
-        setBorderRadius(value);
     };
 
     return (
@@ -35,7 +29,7 @@ export default function BlockSection(props) {
                         <div className='block'>
                             <span>W</span>
                             <input type="number" value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.width} onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.width')} />
-                            <select onChange={(e) => handleEditChange(e, props.selectedBox, "unit.width")}>
+                            <select onChange={(e) => handleEditChange(e, props.selectedBox, "units.width")}>
                                 <option value={"px"}>px</option>
                                 <option value={"%"}>%</option>
                             </select>
@@ -43,7 +37,7 @@ export default function BlockSection(props) {
                         <div className='block'>
                             <span>H</span>
                             <input type="number" value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.height} onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.height')} />
-                            <select onChange={(e) => handleEditChange(e, props.selectedBox, "unit.height")}>
+                            <select onChange={(e) => handleEditChange(e, props.selectedBox, "units.height")}>
                                 <option value={"px"}>px</option>
                                 <option value={"%"}>%</option>
                             </select>
@@ -80,16 +74,29 @@ export default function BlockSection(props) {
                                 type="range"
                                 min={0}
                                 max={100}
-                                value={props.boxes.find((box) => box.id === props.selectedBox).style.border_radius} // Set the value of the range input from the state
-                                onChange={(e) => handleEditChange(e, props.selectedBox, 'style.border_radius')} // Handle changes in the range input
+                                value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.border_radius}
+                                onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.border_radius')}
                             />
                             <input
                                 type='number'
-                                value={props.boxes.find((box) => box.id === props.selectedBox).style.border_radius} // Bind the text input value to the state for the dynamic display
-                                onChange={(e) => handleEditChange(e, props.selectedBox, 'style.border_radius')} // This input is read-only and controlled by the range input
+                                value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.border_radius}
+                                onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.border_radius')}
                             />
                         </div>
                     </div>
+                    <hr />
+                    <h6>Color format</h6>
+                    <div className='blockflex mt-2'>
+                        <span>Background-color =</span>
+                        <input
+                            type='color'
+                            value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.bg}
+                            onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.bg')}
+                        />
+                    </div>
+                    <hr />
+                   <Border/>
+
                 </>
             )
             }
