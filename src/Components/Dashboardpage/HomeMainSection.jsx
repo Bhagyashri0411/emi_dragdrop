@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import './Home.css';
+import GridComponent from "./GridComponent";
 
-const HomeMainSection = (props) => {
-
+const HomeMainSection = React.memo((props) => {
+    
     const [dragging, setDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
 
@@ -37,7 +38,10 @@ const HomeMainSection = (props) => {
     };
 
     return (
-        <div className='containerbox' id='code' onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
+        <div className='containerbox' id='code'
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+        >
 
             <div className="col-md-12">
                 <div className="card p-0">
@@ -52,9 +56,9 @@ const HomeMainSection = (props) => {
                                         left: box.position.x,
                                         border: props.selectedBox === box.id ? '2px solid red' : '1px solid black',
                                         borderRadius: `${box.dimensions.border_radius}px`,
-                                        backgroundColor:box.dimensions.bg
+                                        backgroundColor: box.dimensions.bg
                                     }}
-                                    onClick={(e) => props.handleMouseClick(e, box.id)}
+                                    onClick={() => props.handleMouseClick(box.id)}
                                     onMouseDown={(e) => handleMouseDown(e, box.id)}
                                 >
                                     <div
@@ -67,21 +71,28 @@ const HomeMainSection = (props) => {
                                         <p style={{
                                             fontSize: `${box.textstyle.fontSize}px`,
                                             fontWeight: box.textstyle.fontWeight,
-                                            color:box.textstyle.tcolor
+                                            color: box.textstyle.tcolor
                                         }}>
                                             {box.textstyle.text} {key}
                                         </p>
                                     </div>
-                                </div >
+                                </div>
 
                             </>
                         ))}
+
+
+
+                        {props.gridsBlock.length !== 0 &&
+                            <GridComponent {...props} />
+                        }
+
                     </div>
                 </div>
             </div>
         </div>
 
     )
-}
+})
 
 export default HomeMainSection;

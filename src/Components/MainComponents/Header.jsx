@@ -2,7 +2,8 @@ import React from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom";
 
-const Header = (props) => {
+
+const Header = React.memo((props) => {
 
     return (
         <>
@@ -33,8 +34,8 @@ const Header = (props) => {
                 </div>
             </div>
         </>
-
     )
-}
+});
+
 
 export default Header;

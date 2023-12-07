@@ -3,6 +3,7 @@ import HomeMainSection from './Dashboardpage/HomeMainSection';
 import Sidebar from './MainComponents/Sidebar';
 import StyleComponent from './MainComponents/StyleComponent';
 import "./MainComponents/mainComponents.css";
+import GridOptionComponent from './MainComponents/GridOptionComponent';
 
 
 const Main = () => {
@@ -13,7 +14,18 @@ const Main = () => {
 
     // const for card
     const [boxes, setBoxes] = useState([]);
+    // const for grid collection
+    const [gridsBlock, setGridsBlock] = useState([]);
+
+
+    // Selection
     const [selectedBox, setSelectedBox] = useState(null);
+    const [selectedGrid, setSelectedGrid] = useState(null);
+    const [selectedMainGrid, setSelectedMainGrid] = useState(null);
+
+
+    // const for custom grid section
+    const [openGridSection, setOpenGridSection] = useState(false);
 
     // Close and open side bar
     const handleOpenandCloseDrawer = () => {
@@ -39,16 +51,56 @@ const Main = () => {
                 tcolor: "white"
             }
         };
-
-
         setBoxes([...boxes, newBox]);
     };
 
 
-    const handleMouseClick = (e, id) => {
+    const handleMouseClick = (id) => {
         setSelectedBox(id);
         setOpenStyleBox(false)
     }
+
+    // gridfunctions
+
+
+    const handleMouseClickGrid = (id, name) => {
+        if (name === "main") {
+            setSelectedMainGrid(id);
+            setSelectedGrid(null); // Reset other grid selection
+        } else if (name === "") {
+            setSelectedGrid(id);
+            setSelectedMainGrid(null); // Reset main grid selection
+        }
+
+        setOpenStyleBox(true);
+    };
+
+    // function for add grid
+    const handleAddGrid = (columns, rows) => {
+        // Calculate total number of cells
+        const totalCells = columns * rows;
+
+        // Create an array of items for the grid
+        const gridItems = Array.from({ length: totalCells }, (_, index) => ({
+            id: index + 1,
+            text: `Item ${index + 1}`,
+            styles: {
+                padding: [10, 12], margin: [10, 5], width: [100, "%"]
+            },
+
+        }));
+
+        const newGrid = {
+            mainid: Date.now(),
+            items: gridItems,
+            styles: { gap: 10, height:[100, "px"] },
+            columns: columns,
+            rows: rows
+        };
+
+        setGridsBlock([...gridsBlock, newGrid])
+    }
+
 
     return (
         <>
@@ -60,6 +112,10 @@ const Main = () => {
                             <Sidebar open={open}
                                 handleFun={handleOpenandCloseDrawer}
                                 handleAddBox={handleAddBox}
+                                handleAddGrid={handleAddGrid}
+                                setSelectedBox={setSelectedBox}
+                                // Grid section open const
+                                setOpenGridSection={setOpenGridSection}
                             />
                         </div>
                         <div className='secondColumn' style={{ width: open ? `calc(100% - ${width})` : '100%' }}>
@@ -70,19 +126,41 @@ const Main = () => {
                                     setSelectedBox={setSelectedBox}
                                     setBoxes={setBoxes}
                                     handleMouseClick={handleMouseClick}
+                                    // handle click on grid
+                                    gridsBlock={gridsBlock}
+                                    setGridsBlock={setGridsBlock}
+                                    selectedGrid={selectedGrid}
+                                    selectedMainGrid={selectedMainGrid}
+                                    setSelectedGrid={setSelectedGrid}
+                                    handleMouseClickGrid={handleMouseClickGrid}
                                 />
                             </div>
 
                         </div>
-                        <div className='thirdColumn' style={{ width: openStyleBox ? "0" : "350px" }}>
-                            <StyleComponent
-                                handleFun={handleOpenandCloseStyleDrawer}
-                                open={openStyleBox}
-                                boxes={boxes}
-                                setBoxes={setBoxes}
-                                selectedBox={selectedBox}
-                            />
-                        </div>
+
+                        {openGridSection || selectedGrid ? (
+
+                            <div className='thirdColumn grid' style={{ width: openStyleBox ? "360px" : "0" }}>
+                                <GridOptionComponent
+                                    selectedGrid={selectedGrid}
+                                    gridsBlock={gridsBlock}
+                                    setGridsBlock={setGridsBlock}
+                                    // handle grid
+                                    handleAddGrid={handleAddGrid}
+
+                                />
+                            </div>
+                        ) :
+                            <div className='thirdColumn' style={{ width: openStyleBox ? "0" : "350px" }}>
+                                <StyleComponent
+                                    handleFun={handleOpenandCloseStyleDrawer}
+                                    open={openStyleBox}
+                                    boxes={boxes}
+                                    setBoxes={setBoxes}
+                                    selectedBox={selectedBox}
+                                />
+                            </div>
+                        }
                     </div>
                 </div>
 

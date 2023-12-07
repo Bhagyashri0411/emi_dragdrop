@@ -1,7 +1,7 @@
 import React from 'react';
 import Border from './Border';
 
-export default function BlockSection(props) {
+const BlockSection = React.memo((props) =>{
 
 
 
@@ -102,4 +102,6 @@ export default function BlockSection(props) {
             }
         </div>
     )
-}
+})
+
+export default BlockSection
