@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function TextSection(props) {
+const TextSection = React.memo((props) =>{
 
   const handleEditChange = (e, id, property) => {
     const updatedBoxes = [...props.boxes];
@@ -60,4 +60,5 @@ export default function TextSection(props) {
       )}
     </div>
   )
-}
+})
+export default TextSection;
