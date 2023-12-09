@@ -28,7 +28,7 @@ const BlockSection = React.memo((props) =>{
                     <div className='blockflex'>
                         <div className='block'>
                             <span>W</span>
-                            <input type="number" value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.width} onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.width')} />
+                            <input type="number" min={0} max={100} value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.width} onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.width')} />
                             <select onChange={(e) => handleEditChange(e, props.selectedBox, "units.width")}>
                                 <option value={"px"}>px</option>
                                 <option value={"%"}>%</option>
@@ -36,7 +36,7 @@ const BlockSection = React.memo((props) =>{
                         </div>
                         <div className='block'>
                             <span>H</span>
-                            <input type="number" value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.height} onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.height')} />
+                            <input type="number" min={0} max={100} value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.height} onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.height')} />
                             <select onChange={(e) => handleEditChange(e, props.selectedBox, "units.height")}>
                                 <option value={"px"}>px</option>
                                 <option value={"%"}>%</option>
@@ -48,25 +48,23 @@ const BlockSection = React.memo((props) =>{
                     <div className='blockflex'>
                         <div className='block'>
                             <span>Left</span>
-                            <input type="number" value={props.boxes.find((box) => box.id === props.selectedBox).position.x} onChange={(e) => handleEditChange(e, props.selectedBox, 'position.x')} />
+                            <input type="number" min={0} max={100} value={props.boxes.find((box) => box.id === props.selectedBox).position.x} onChange={(e) => handleEditChange(e, props.selectedBox, 'position.x')} />
                         </div>
                         <div className='block'>
                             <span>Right</span>
-                            <input type="number" value={props.boxes.find((box) => box.id === props.selectedBox).position.y} onChange={(e) => handleEditChange(e, props.selectedBox, 'position.y')} />
+                            <input type="number" min={0} max={100} value={props.boxes.find((box) => box.id === props.selectedBox).position.y} onChange={(e) => handleEditChange(e, props.selectedBox, 'position.y')} />
                         </div>
                     </div>
+
                     <hr />
                     <div className='blockflex'>
                         <div className='block'>
                             <span>Padding</span>
-                            <input type="number" value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.padding}
+                            <input type="number" min={0} max={100} value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.padding}
                                 onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.padding')} />
-                            <select>
-                                <option value={"px"}>px</option>
-                                <option value={"%"}>%</option>
-                            </select>
                         </div>
                     </div>
+
                     <div className='blockflex mt-2'>
                         <div className='block'>
                             <span>Border Radius</span>
@@ -78,7 +76,7 @@ const BlockSection = React.memo((props) =>{
                                 onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.border_radius')}
                             />
                             <input
-                                type='number'
+                                type='number' min={0} max={100}
                                 value={props.boxes.find((box) => box.id === props.selectedBox).dimensions.border_radius}
                                 onChange={(e) => handleEditChange(e, props.selectedBox, 'dimensions.border_radius')}
                             />
@@ -95,7 +93,7 @@ const BlockSection = React.memo((props) =>{
                         />
                     </div>
                     <hr />
-                   <Border/>
+                   <Border {...props} />
 
                 </>
             )

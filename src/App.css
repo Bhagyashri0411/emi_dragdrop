@@ -25,11 +25,8 @@ img {
 
 
 /* main */
-.card{
+.homecard{
   border-radius: 2px;
   height: 100vh;
-
-}
-.card .card-body {
-  padding: 15px 15px 10px !important;
+  background-color: #fff;
 }

@@ -7,9 +7,7 @@
 
 .boxcard {
     position: absolute;
-    background-color: #f0f0f0;
     cursor: pointer;
-    border: 1px solid #999;
 }
 /* GridComponent */
 
