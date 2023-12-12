@@ -6,7 +6,6 @@ import GridOptionComponent from './MainComponents/LeftSidebarOptionComponent/Gri
 import BoxOptionCompoent from './MainComponents/LeftSidebarOptionComponent/BoxOptionComponent';
 import MainPageOptionComponent from './MainComponents/LeftSidebarOptionComponent/MainPageOptionComponent';
 
-
 const Main = () => {
     const width = "220px";
 
@@ -23,6 +22,7 @@ const Main = () => {
     // Selection
     const [selectedBox, setSelectedBox] = useState(null);
     const [selectedGrid, setSelectedGrid] = useState(["", ""]);
+    const [selectedText, setSelectedText] = useState(["", "", ""]);
 
 
     // Close and open side bar
@@ -55,18 +55,19 @@ const Main = () => {
 
     // function for add grid
     const handleAddGrid = (columns, rows) => {
-        // Calculate total number of cells
         const totalCells = columns * rows;
 
         // Create an array of items for the grid
         const gridItems = Array.from({ length: totalCells }, (_, index) => ({
             id: String(Date.now()).slice(-4) + (index + 1),
-            text: `Item ${index + Date.now()}`,
-            styles: { padding: [10, 12], width: [100, "%"] },
+            styles: {
+                padding: [10, 12], width: [100, "%"], bg: [45, "#26293c", "#26293c"],
+                border: [0, 0, 0, 0, "solid", "blue"], radius: 5
+            },
         }));
 
         const noOfGrid = Array.from({ length: columns }, () => "1fr");
-        
+
         const newGrid = {
             mainid: String(Date.now()).slice(-3),
             items: gridItems,
@@ -80,8 +81,7 @@ const Main = () => {
 
         setGridsBlock([...gridsBlock, newGrid]);
 
-    }
-
+    };
 
     return (
         <>
@@ -106,12 +106,16 @@ const Main = () => {
                                     setBoxes={setBoxes}
                                     selectedBox={selectedBox}
                                     setSelectedBox={setSelectedBox}
-                                    // handle click on grid
+                                    // elements for grids
                                     gridsBlock={gridsBlock}
                                     setGridsBlock={setGridsBlock}
 
                                     selectedGrid={selectedGrid}
                                     setSelectedGrid={setSelectedGrid}
+
+                                    // elements for text in grids
+                                    selectedText={selectedText}
+                                    setSelectedText={setSelectedText}
 
                                 />
                             </div>
@@ -130,28 +134,29 @@ const Main = () => {
                                     />
                                 </div> :
 
-                                selectedGrid[0] !== "" &&
+                                selectedGrid[0] || selectedText[0] ?
 
-                                <div className='thirdColumn grid' style={{ width: openStyleBox ? "360px" : "0" }}>
-                                    <GridOptionComponent
-                                        handleFun={handleOpenandCloseStyleDrawer}
-                                        open={openStyleBox}
-                                        gridsBlock={gridsBlock}
-                                        setGridsBlock={setGridsBlock}
-                                        selectedGrid={selectedGrid}
-                                        handleAddGrid={handleAddGrid}
-                                    />
-                                </div>
-
-                        }
-                        {/* <div className='thirdColumn Mainpage' style={{ width: openStyleBox ? "250px" : "0" }}>
+                                    <div className='thirdColumn grid' style={{ width: openStyleBox ? "360px" : "0" }}>
+                                        <GridOptionComponent
+                                            handleFun={handleOpenandCloseStyleDrawer}
+                                            open={openStyleBox}
+                                            gridsBlock={gridsBlock}
+                                            setGridsBlock={setGridsBlock}
+                                            selectedGrid={selectedGrid}
+                                            handleAddGrid={handleAddGrid}
+                                            selectedText={selectedText}
+                                        />
+                                    </div>
+                                    :
+                                    <div className='thirdColumn Mainpage' style={{ width: openStyleBox ? "250px" : "0" }}>
                                         <MainPageOptionComponent
                                             open={openStyleBox}
                                             handleFun={handleOpenandCloseStyleDrawer}
                                             setPropertyPage={setPropertyPage}
                                             propertyPage={propertyPage}
                                         />
-                                    </div> */}
+                                    </div>
+                        }
                     </div>
                 </div>
 
