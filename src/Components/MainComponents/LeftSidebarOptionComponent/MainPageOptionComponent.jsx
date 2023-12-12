@@ -16,7 +16,7 @@ export default function MainPageOptionComponent(props) {
         const property = {
             id: Date.now(),
             num: { margin: [10, 5], padding: [15, 2] },
-            string: { bg: "#c21919" },
+            string: { bg: "#222233" },
         }
         props.setPropertyPage(property);
     }, [])

@@ -117,7 +117,7 @@ const Sidebar = React.memo(({ open, handleFun, handleAddBox, ...props }) => {
                                 <MenuItem onClick={() => props.handleAddGrid(4, 1)}>
                                     Columns 4 and row 1
                                 </MenuItem>
-                                <MenuItem onClick={() => props.setSelectedGrid(true)}>
+                                <MenuItem onClick={() => props.setSelectedGrid(["open", "open"])}>
                                     Custom your grid
                                 </MenuItem>
                             </Menu>
