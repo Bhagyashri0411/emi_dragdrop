@@ -30,3 +30,7 @@ img {
   height: 100vh;
   background-color: #fff;
 }
+
+.selected{
+  outline: 2px solid red;
+}

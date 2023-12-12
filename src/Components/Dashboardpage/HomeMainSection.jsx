@@ -25,10 +25,11 @@ const HomeMainSection = React.memo((props) => {
         setDragging(false);
         props.setSelectedBox(null);
         props.setSelectedGrid(["", ""])
+        props.setSelectedText(["", "", ""]);
     };
 
     const data = props.propertyPage;
-    
+
     return (
         <div className='containerbox' id='code' onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
             <div className="col-md-12">
@@ -47,7 +48,6 @@ const HomeMainSection = React.memo((props) => {
                 </div>
             </div>
         </div>
-
     )
 })
 

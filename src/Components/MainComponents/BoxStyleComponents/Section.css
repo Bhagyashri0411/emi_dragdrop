@@ -9,7 +9,24 @@
 
 .blockflex .block {
     display: flex;
+    align-items: center;
     gap: 5px;
+}
+
+.blockflex .block .iconflex {
+    color: gray;
+    margin-right: 15px;
+}
+
+.blockflex .block>* {
+    margin-bottom: 0;
+}
+
+
+.headingblock:hover {
+    background-color: #b0cef0;
+    border: 1px solid #4a9dfa;
+    cursor: pointer;
 }
 
 .blockdisplay {
@@ -20,23 +37,24 @@
 
 .blockdisplay h6 {
     border-bottom: 0 !important;
+    margin-bottom: 0;
 }
 
 .blockflex span,
 .blockdisplay h6 {
-    font-size: 16px;
-    border-bottom: 2px solid;
+    font-size: 14px;
     font-weight: 500;
 }
 
 
 .blockflex input:not(input[type="color"]) {
     width: 100%;
+    flex: 2;
 }
 
-
-
-
+.blockflex .rangeblock {
+    flex: 8 !important;
+}
 
 .boxbackground {
     padding: 5px;
@@ -45,7 +63,7 @@
     cursor: pointer;
 }
 
-.boxbackground.select {
+.select {
     background-color: #d0d0d06d;
 }
 
