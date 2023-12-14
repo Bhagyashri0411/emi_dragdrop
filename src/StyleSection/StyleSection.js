@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const BorderSection = ({ borderValues }) => {
 
     return {
@@ -23,6 +21,16 @@ export const MarginSection = ({ marginValues }) => {
         marginLeft: `${marginValues[1]}px`,
         marginRight: `${marginValues[2]}px`,
         marginBottom: `${marginValues[3]}px`,
+    };
+
+};
+// Padding
+export const PaddingSection = ({ paddingValues }) => {
+    return {
+        paddingTop: `${paddingValues[0]}px`,
+        paddingLeft: `${paddingValues[1]}px`,
+        paddingRight: `${paddingValues[2]}px`,
+        paddingBottom: `${paddingValues[3]}px`,
     };
 
 };

@@ -4,7 +4,7 @@ import { BorderSection, MarginSection, BackgroundSection } from '../../../StyleS
 function GridComponent(props) {
 
     return (
-        <>
+        <div>
             {props.gridsBlock.map((gridBlock, key) => {
                 return (
                     <div
@@ -46,7 +46,7 @@ function GridComponent(props) {
                                                     fontWeight: text.styles.fontstyle.includes('bold') ? 'bold' : text.styles.fontWeight,
                                                     color: text.styles.color,
                                                     textAlign: text.styles.align,
-                                                    fontFamily:text.styles.fontFamily
+                                                    fontFamily: text.styles.fontFamily,
                                                 };
                                                 return (
                                                     <text.type className={`text ${props.selectedText[0] === text.id ? 'selected' : ''}`}
@@ -72,7 +72,7 @@ function GridComponent(props) {
                 )
             }
             )}
-        </>
+        </div>
     );
 }
 

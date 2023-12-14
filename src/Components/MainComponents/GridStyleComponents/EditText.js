@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
@@ -11,6 +10,7 @@ import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import FontFamiliesList from '../../../StyleSection/FontFamiliesList';
 
 export default function EditText(props) {
+
 
     const updatedGrid = [...props.gridsBlock];
 
@@ -51,9 +51,7 @@ export default function EditText(props) {
         headings.push(
             <option value={`h${i}`} key={i}>Heading {i}</option>
         )
-    }
-
-
+    };
     return (
         <>
             <div className='mt-4'>
@@ -66,12 +64,6 @@ export default function EditText(props) {
                     </Form.Select>
                 </div>
 
-                <div className='blockflex'>
-                    <span>FontFamily</span>
-                    <Form.Select id='font-family' value={filterOfTextArray.styles.fontFamily} onChange={(e) => editHeading(e,"styles.fontFamily")}>
-                        <FontFamiliesList />
-                    </Form.Select>
-                </div>
 
                 <h6 className='px-3'>Input</h6>
                 <div className='blockflex'>
@@ -79,7 +71,13 @@ export default function EditText(props) {
                 </div>
 
             </div>
-
+            <hr />
+            <div className='blockflex'>
+                <span>FontFamily</span>
+                <Form.Select id='font-family' value={filterOfTextArray.styles.fontFamily} onChange={(e) => editHeading(e, "styles.fontFamily")}>
+                    <FontFamiliesList />
+                </Form.Select>
+            </div>
             <div className='blockflex'>
                 <div className='block' style={{ flex: 1 }}>
                     <span>FS</span>
@@ -98,6 +96,9 @@ export default function EditText(props) {
                 </div>
 
             </div>
+            <hr />
+
+
             <div className='blockflex'>
                 <div className='block'>
                     <div

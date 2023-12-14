@@ -25,12 +25,57 @@ img {
 
 
 /* main */
-.homecard{
+.homecard {
   border-radius: 2px;
   height: 100vh;
   background-color: #fff;
 }
 
-.selected{
+.selected {
   outline: 2px solid red;
+}
+
+/* Inputform */
+
+.form-inline {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.form-inline label {
+  flex: 1;
+}
+
+.form-inline input,
+.form-inline select {
+  width: 100%;
+  padding: 3px;
+  flex: 2;
+}
+
+.button-section {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: royalblue;
+}
+
+.remove {
+  background-color: rgb(192, 53, 53);
+}
+
+.remove:hover {
+  background-color: rgb(187, 43, 43);
 }
