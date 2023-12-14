@@ -9,15 +9,13 @@ import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import FontFamiliesList from '../../../StyleSection/FontFamiliesList';
+import InputForm from './InputForm';
 
 const TextSection = (props) => {
-
-
     const [selectedButtons, setSelectedButtons] = React.useState([]);
     const [color, setColor] = React.useState();
-
+    const [openText, setOpenText] = React.useState();
     const [alignMent, setAlignMent] = React.useState('left');
-
 
     const handleFontStyles = (buttonName) => {
         const isSelected = selectedButtons.includes(buttonName);
@@ -39,12 +37,14 @@ const TextSection = (props) => {
         const fontWeight = document.getElementById("fontweighttext").value;
         const fontFamily = document.getElementById("font-family").value;
 
-
         const objText = {
             id: Date.now(),
             text: text,
             type: type,
-            styles: { fontSize, fontWeight, fontstyle: [...selectedButtons], color, align: alignMent, fontFamily }
+            styles: {
+                fontSize, fontWeight, fontstyle: [...selectedButtons],
+                color, align: alignMent, fontFamily,
+            }
         };
         const mainText = {
             id: `text${props.selectedGrid[0]}`,
@@ -89,101 +89,112 @@ const TextSection = (props) => {
         );
     }
 
+    const handleOpenText = (e) => {
+        setOpenText(e)
+    }
+
+
     return (
         <>
-            <div className='mt-4'>
-                <div className='blockflex'>
-                    <span>Elements</span>
-                    <Form.Select id='element'>
-                        {headings}
-                        <option value={`p`}>Paragraph </option>
-                        <option value={`span`}>Span</option>
-                    </Form.Select>
-                </div>
-                <div className='blockflex'>
-                    <span>FontFamily</span>
-                    <Form.Select id='font-family'>
-                        <FontFamiliesList />
-                    </Form.Select>
-                </div>
-                <h6 className='px-3'>Input</h6>
-                <div className='blockflex'>
-                    <Form.Control as="textarea" rows={3} id='inputtext' />
-                </div>
-
-                <div className='blockflex'>
-                    <div className='block' style={{ flex: 1 }}>
-                        <span>FS</span>
-                        <input type="number" id='fontsizetext' />
-                    </div>
-                    <div className='block'>
-                        <span>FW</span>
-                        <Form.Select id='fontweighttext'>
-                            <option value="300" style={{ fontWeight: 300 }} >300 Light</option>
-                            <option value="400" style={{ fontWeight: 400 }}>400 Regular</option>
-                            <option value="500" style={{ fontWeight: 500 }}>500 Medium</option>
-                            <option value="600" style={{ fontWeight: 600 }}>600 Semi-Bold</option>
-                            <option value="700" style={{ fontWeight: 700 }}>700 Bold</option>
-                            <option value="800" style={{ fontWeight: 800 }}>800 Extra-Bold</option>
+            <div className='blockflex'>
+                <Button onClick={() => handleOpenText("text")}>Add Text</Button>
+                <Button onClick={() => handleOpenText("radio")}>Add Redio</Button>
+                <Button>Add Table</Button>
+            </div>
+            {openText === "text" && (
+                <div className='mt-3' >
+                    <div className='blockflex'>
+                        <span>Elements</span>
+                        <Form.Select id='element'>
+                            {headings}
+                            <option value={`p`}>Paragraph </option>
+                            <option value={`span`}>Span</option>
                         </Form.Select>
                     </div>
-
-                </div>
-                <div className='blockflex'>
-                    <div className='block'>
-                        <div
-                            className={`boxbackground ${selectedButtons.includes('bold') ? 'select' : ''}`}
-                            onClick={() => handleFontStyles('bold')}
-                        >
-                            <FormatBoldIcon />
+                    <h6 className='px-3'>Input</h6>
+                    <div className='blockflex'>
+                        <Form.Control as="textarea" rows={3} id='inputtext' />
+                    </div>
+                    <hr />
+                    <div className='blockflex'>
+                        <span>FontFamily</span>
+                        <Form.Select id='font-family'>
+                            <FontFamiliesList />
+                        </Form.Select>
+                    </div>
+                    <div className='blockflex'>
+                        <div className='block' style={{ flex: 1 }}>
+                            <span>FS</span>
+                            <input type="number" id='fontsizetext' />
                         </div>
-                        <div
-                            className={`boxbackground ${selectedButtons.includes('italic') ? 'select' : ''}`}
-                            onClick={() => handleFontStyles('italic')}
-                        >
-                            <FormatItalicIcon />
+                        <div className='block'>
+                            <span>FW</span>
+                            <Form.Select id='fontweighttext'>
+                                <option value="300" style={{ fontWeight: 300 }}>300 Light</option>
+                                <option value="400" style={{ fontWeight: 400 }}>400 Regular</option>
+                                <option value="500" style={{ fontWeight: 500 }}>500 Medium</option>
+                                <option value="600" style={{ fontWeight: 600 }}>600 Semi-Bold</option>
+                                <option value="700" style={{ fontWeight: 700 }}>700 Bold</option>
+                                <option value="800" style={{ fontWeight: 800 }}>800 Extra-Bold</option>
+                            </Form.Select>
                         </div>
-                        <div
-                            className={`boxbackground ${selectedButtons.includes('underlined') ? 'select' : ''}`}
-                            onClick={() => handleFontStyles('underlined')}
-                        >
-                            <FormatUnderlinedIcon />
+
+                    </div>
+                    <div className='blockflex'>
+                        <div className='block'>
+                            <div
+                                className={`boxbackground ${selectedButtons.includes('bold') ? 'select' : ''}`}
+                                onClick={() => handleFontStyles('bold')}
+                            >
+                                <FormatBoldIcon />
+                            </div>
+                            <div
+                                className={`boxbackground ${selectedButtons.includes('italic') ? 'select' : ''}`}
+                                onClick={() => handleFontStyles('italic')}
+                            >
+                                <FormatItalicIcon />
+                            </div>
+                            <div
+                                className={`boxbackground ${selectedButtons.includes('underlined') ? 'select' : ''}`}
+                                onClick={() => handleFontStyles('underlined')}
+                            >
+                                <FormatUnderlinedIcon />
+                            </div>
+                        </div>
+                        <div className={`boxbackground text-end`} >
+                            <input type='color' onChange={(e) => setColor(e.target.value)} />
                         </div>
                     </div>
-                    <div className={`boxbackground text-end`} >
-                        <input type='color' onChange={(e) => setColor(e.target.value)} />
+
+
+                    <div className='blockflex'>
+                        <div className={`boxbackground ${alignMent === 'left' ? 'select' : ''}`}
+                            onClick={() => setAlignMent('left')}>
+                            <FormatAlignLeftIcon />
+                        </div>
+                        <div className={`boxbackground ${alignMent === 'center' ? 'select' : ''}`}
+                            onClick={() => setAlignMent('center')}>
+                            <FormatAlignCenterIcon />
+                        </div>
+                        <div className={`boxbackground ${alignMent === 'right' ? 'select' : ''}`}
+                            onClick={() => setAlignMent('right')}  >
+                            <FormatAlignRightIcon />
+                        </div>
+                        <div className={`boxbackground ${alignMent === 'justify' ? 'select' : ''}`}
+                            onClick={() => setAlignMent('justify')}  >
+                            <FormatAlignJustifyIcon />
+                        </div>
+                    </div>
+                    <div className='d-flex mt-1 justify-content-center'>
+                        <Button type='submit'
+                            onClick={() => addHeading(props.selectedGrid[0])}>Add Text</Button>
                     </div>
                 </div>
+            )}
 
-
-                <div className='blockflex'>
-                    <div className={`boxbackground ${alignMent === 'left' ? 'select' : ''}`}
-                        onClick={() => setAlignMent('left')}>
-                        <FormatAlignLeftIcon />
-                    </div>
-                    <div className={`boxbackground ${alignMent === 'center' ? 'select' : ''}`}
-                        onClick={() => setAlignMent('center')}>
-                        <FormatAlignCenterIcon />
-                    </div>
-                    <div className={`boxbackground ${alignMent === 'right' ? 'select' : ''}`}
-                        onClick={() => setAlignMent('right')}  >
-                        <FormatAlignRightIcon />
-                    </div>
-                    <div className={`boxbackground ${alignMent === 'justify' ? 'select' : ''}`}
-                        onClick={() => setAlignMent('justify')}  >
-                        <FormatAlignJustifyIcon />
-                    </div>
-                </div>
-                <div className='d-flex mt-1 justify-content-center'>
-                    <Button type='submit'
-                        onClick={() => addHeading(props.selectedGrid[0])}>Add Text</Button>
-                </div>
-            </div>
-
-
-
-
-
+            {openText === "radio" && (
+                <InputForm />
+            )}
         </>
     );
 };

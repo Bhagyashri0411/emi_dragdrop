@@ -3,9 +3,12 @@ import Border from './Border';
 import GradientIcon from '@mui/icons-material/Gradient';
 import DisabledByDefaultOutlinedIcon from '@mui/icons-material/DisabledByDefaultOutlined';
 import SquareIcon from '@mui/icons-material/Square';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const BlockSection = (props) => {
     const [showColor, setShowColor] = React.useState(false);
+    const [marginOpen, setMarginOpen] = React.useState(false);
+    const [paddingOpen, setPaddingOpen] = React.useState(false);
 
 
     const updatedGrids = [...props.gridsBlock];
@@ -61,9 +64,7 @@ const BlockSection = (props) => {
 
     const filterOfMainComponent = props.gridsBlock.find(x => x.mainid === props.selectedGrid[1]);
 
-    const margin = ["Top", "Left",  "Right", "Bottom"];
-
-
+    const fourAngle = ["Top", "Left", "Right", "Bottom"];
 
     return (
         <>
@@ -161,9 +162,11 @@ const BlockSection = (props) => {
             }
 
             <hr />
-
-            <h6 className='px-2' >Margin</h6>
-            {margin.map((item, key) => (
+            <div className='blockflex' onClick={() => setMarginOpen(!marginOpen)}>
+                <h6 >Margin</h6>
+                <ArrowDropDownIcon />
+            </div>
+            {marginOpen && fourAngle.map((item, key) => (
                 <div className='blockflex' key={key}>
 
                     <span>{item}</span>
@@ -185,6 +188,30 @@ const BlockSection = (props) => {
             ))}
 
             <hr />
+            <div className='blockflex' onClick={() => setPaddingOpen(!paddingOpen)}>
+                <h6 >Padding</h6>
+                <ArrowDropDownIcon />
+            </div>
+            {paddingOpen && fourAngle.map((item, key) => (
+                <div className='blockflex' key={key}>
+
+                    <span>{item}</span>
+                    <input
+                        type="range"
+                        min={0}
+                        max={100}
+                        value={filterOfMainComponent?.styles.padding[key]}
+                        onChange={(e) => handleEditMainChange(e, props.selectedGrid[1], `padding.${key}`)}
+                    />
+                    <input
+                        type="number"
+                        min={0}
+                        max={100}
+                        value={filterOfMainComponent?.styles.padding[key]}
+                        onChange={(e) => handleEditMainChange(e, props.selectedGrid[1], `padding.${key}`)}
+                    />
+                </div>
+            ))}
             <Border {...props} filterOfMainComponent={filterOfMainComponent} />
             <hr />
 

@@ -72,7 +72,7 @@ const Main = () => {
             mainid: String(Date.now()).slice(-3),
             items: gridItems,
             styles: {
-                gap: 10, height: [100, "px"], margin: [10, 5, 2, 3],
+                gap: 10, height: [100, "px"], margin: [10, 5, 2, 3], padding: [5, 2, 2, 3],
                 gridColumn: noOfGrid
             },
             columns: columns,
