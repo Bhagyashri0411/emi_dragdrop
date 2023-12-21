@@ -23,6 +23,8 @@ const Main = () => {
     const [selectedBox, setSelectedBox] = useState(null);
     const [selectedGrid, setSelectedGrid] = useState(["", ""]);
     const [selectedText, setSelectedText] = useState(["", "", ""]);
+    // part
+    const [selectPart, setSelectPart] = React.useState(["", null]);
 
 
     // Close and open side bar
@@ -117,6 +119,9 @@ const Main = () => {
                                     selectedText={selectedText}
                                     setSelectedText={setSelectedText}
 
+                                    // select part from card
+                                    selectPart={selectPart}
+                                    setSelectPart={setSelectPart}
                                 />
                             </div>
 
@@ -132,9 +137,10 @@ const Main = () => {
                                         setBoxes={setBoxes}
                                         selectedBox={selectedBox}
                                     />
-                                </div> :
+                                </div>
+                                :
 
-                                selectedGrid[0] || selectedText[0] ?
+                                selectedGrid[0] || selectedText[0] || selectPart[0] ?
 
                                     <div className='thirdColumn grid' style={{ width: openStyleBox ? "360px" : "0" }}>
                                         <GridOptionComponent
@@ -145,6 +151,8 @@ const Main = () => {
                                             selectedGrid={selectedGrid}
                                             handleAddGrid={handleAddGrid}
                                             selectedText={selectedText}
+                                            // grid part
+                                            selectPart={selectPart}
                                         />
                                     </div>
                                     :

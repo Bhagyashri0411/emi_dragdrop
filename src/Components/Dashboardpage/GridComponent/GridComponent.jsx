@@ -1,7 +1,11 @@
 import React from 'react';
 import { BorderSection, MarginSection, BackgroundSection } from '../../../StyleSection/StyleSection';
+import PieChartComponent from '../../../Charts/PieChartComponent';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import TableComponent from './TableComponent';
 
 function GridComponent(props) {
+
 
     return (
         <div>
@@ -36,33 +40,61 @@ function GridComponent(props) {
                                             props.setSelectedText(["", item.id, gridBlock.mainid])
                                         }}
                                     >
-                                        {item.addedText &&
-                                            item.addedText.map((text, key) => {
+                                        <div className='card-header border-0'>
+                                            {item.addedRadioText ?
+                                                <div className='radio-box'>
+                                                    <h5>{item.addedRadioText[0].heading}</h5>
+                                                    <div className='radio-box'>
+                                                        {item.addedRadioText[0].texts.map((input, key) => (
+                                                            <div className='radio' key={key}>
+                                                                <input type="radio" name={item.addedRadioText[0].id} checked={input?.status}
+                                                                    onChange={(e) => { e.stopPropagation() }} />
+                                                                <span>
+                                                                    {input?.name}
+                                                                </span>
+                                                            </div>
+                                                        )
+                                                        )}
+                                                    </div>
+                                                </div>
+                                                :
+                                                <div className={`add-box ${props.selectPart[0] === item.id && props.selectPart[1] === "header" && "selected"}`} onClick={(e) => { e.stopPropagation(); props.setSelectPart([item.id, "header"]) }} />
+                                            }
+                                        </div>
+                                        <div className='card-body'>
+                                            {item.addedText ?
+                                                item.addedText.map((text, key) => {
+                                                    const textStyle = {
+                                                        fontSize: `${text.styles.fontSize}px`,
+                                                        fontStyle: text.styles.fontstyle.includes('italic') ? 'italic' : 'normal',
+                                                        textDecoration: text.styles.fontstyle.includes('underlined') ? 'underline' : 'none',
+                                                        fontWeight: text.styles.fontstyle.includes('bold') ? 'bold' : text.styles.fontWeight,
+                                                        color: text.styles.color,
+                                                        textAlign: text.styles.align,
+                                                        fontFamily: text.styles.fontFamily,
+                                                    };
+                                                    return (
+                                                        <text.type className={`text ${props.selectedText[0] === text.id ? 'selected' : ''}`}
+                                                            key={key}
+                                                            style={textStyle}
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                props.setSelectedText([text.id, item.id, gridBlock.mainid]);
+                                                            }}
+                                                        >
+                                                            {text.text}
+                                                        </text.type>
+                                                    )
+                                                })
+                                                :
+                                                item.tableData ?
+                                                    <TableComponent data={item.tableData} />
+                                                    :
+                                                    <div className={`add-box ${props.selectPart[0] === item.id && props.selectPart[1] === "body" && "selected"}`} onClick={(e) => { e.stopPropagation(); props.setSelectPart([item.id, "body"]) }} />
 
-                                                const textStyle = {
-                                                    fontSize: `${text.styles.fontSize}px`,
-                                                    fontStyle: text.styles.fontstyle.includes('italic') ? 'italic' : 'normal',
-                                                    textDecoration: text.styles.fontstyle.includes('underlined') ? 'underline' : 'none',
-                                                    fontWeight: text.styles.fontstyle.includes('bold') ? 'bold' : text.styles.fontWeight,
-                                                    color: text.styles.color,
-                                                    textAlign: text.styles.align,
-                                                    fontFamily: text.styles.fontFamily,
-                                                };
-                                                return (
-                                                    <text.type className={`text ${props.selectedText[0] === text.id ? 'selected' : ''}`}
-                                                        key={key}
-                                                        style={textStyle}
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            props.setSelectedText([text.id, item.id, gridBlock.mainid]);
-                                                        }}
-                                                    >
-                                                        {text.text}
-                                                    </text.type>
-                                                )
-
-                                            })
-                                        }
+                                            }
+                                        </div>
+                                        <div className='card-footer border-0'></div>
                                     </div>
                                 );
                             })

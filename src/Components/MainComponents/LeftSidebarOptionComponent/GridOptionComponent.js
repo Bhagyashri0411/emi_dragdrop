@@ -5,6 +5,10 @@ import ColumnAndRow from '../GridStyleComponents/ColumnAndRow'
 import BlockSection from '../GridStyleComponents/BlockSection';
 import TextSection from '../GridStyleComponents/TextSection';
 import EditText from '../GridStyleComponents/EditText';
+import DoughnutGraph from '../../GraphComponent/DoughuntGraph';
+import PieChartComponent from '../../../Charts/PieChartComponent';
+import MakeTableElements from '../GridStyleComponents/MakeTableElements';
+import { Text } from "../GridStyleComponents/TextSection"
 
 const GridOptionComponent = React.memo((props) => {
 
@@ -34,18 +38,37 @@ const GridOptionComponent = React.memo((props) => {
                 </a>
               </li>
               :
-              <>
+              props.selectPart[0] ?
+                props.selectPart[1] === "header" ?
+                  <li className="nav-item" role="presentation">
+                    <a className="nav-link active" id="grid-tab-3" data-bs-toggle="tab" href="#grid-tabs-3" role="tab" aria-selected="true">
+                      Text
+                    </a>
+                  </li>
+                  :
+                  <>
+                    <li className="nav-item" role="presentation">
+                      <a className="nav-link active" id="grid-tab-3" data-bs-toggle="tab" href="#grid-tabs-3" role="tab" aria-selected="true">
+                        Text
+                      </a>
+                    </li>
+                    <li className="nav-item" role="presentation">
+                      <a className="nav-link" id="grid-tab-4" data-bs-toggle="tab" href="#grid-tabs-4" role="tab" aria-selected="true">
+                        Graphs
+                      </a>
+                    </li>
+                    <li className="nav-item" role="presentation">
+                      <a className="nav-link" id="grid-tab-5" data-bs-toggle="tab" href="#grid-tabs-5" role="tab" aria-selected="true">
+                        Table
+                      </a>
+                    </li>
+                  </>
+                :
                 <li className="nav-item" role="presentation">
                   <a className="nav-link active" id="grid-tab-2" data-bs-toggle="tab" href="#grid-tabs-2" role="tab" aria-selected="true">
                     Block
                   </a>
                 </li>
-                <li className="nav-item" role="presentation">
-                  <a className="nav-link" id="grid-tab-3" data-bs-toggle="tab" href="#grid-tabs-3" role="tab" aria-selected="true">
-                    Text
-                  </a>
-                </li>
-              </>
           }
         </ul>
 
@@ -64,14 +87,26 @@ const GridOptionComponent = React.memo((props) => {
               <EditText {...props} />
             </div>
             :
-            <>
+            props.selectPart[0] ?
+              props.selectPart[1] === "header" ?
+                <Text {...props} />
+                :
+                <>
+                  <div className="tab-pane active" id="grid-tabs-3" aria-labelledby="3">
+                    <TextSection {...props} />
+                  </div>
+                  <div className="tab-pane" id="grid-tabs-4" aria-labelledby="4">
+                    <DoughnutGraph />
+                    <PieChartComponent />
+                  </div>
+                  <div className="tab-pane" id="grid-tabs-5" aria-labelledby="5">
+                    <MakeTableElements {...props} />
+                  </div>
+                </>
+              :
               <div className="tab-pane active" id="grid-tabs-2" aria-labelledby="grid-tab-2">
                 <BlockSection {...props} />
               </div>
-              <div className="tab-pane" id="grid-tabs-3" aria-labelledby="grid-tab-3">
-                <TextSection {...props} />
-              </div>
-            </>
         }
 
       </div>

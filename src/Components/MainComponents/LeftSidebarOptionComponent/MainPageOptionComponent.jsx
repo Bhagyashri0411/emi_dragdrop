@@ -17,7 +17,7 @@ export default function MainPageOptionComponent(props) {
             string: { bg: bgColor },
         }
         props.setPropertyPage(property);
-    }, [bgColor, props]);
+    }, [bgColor]);
 
     const handleEditBack = (e, id, name) => {
         const updatePage = { ...props.propertyPage };

@@ -1,72 +1,111 @@
 
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
+import Radiovalue from './InputFields/Radiovalue';
 // import './styles.css'
 
-const InputForm = () => {
+const InputForm = (props) => {
 
-    const [formValues, setFormValues] = useState([{ type: "", value: "", label: "" }])
+    // Define state variables to hold form values
+    const [formValues, setFormValues] = useState({
+        type: '',
+        fromDate: '',
+        toDate: '',
+        status: '',
+        name: '',
+        label1: '',
+        label2: '',
+    });
 
-    let handleChange = (i, e) => {
-        let newFormValues = [...formValues];
-        newFormValues[i][e.target.name] = e.target.value;
-        setFormValues(newFormValues);
-    }
+    // Update form values based on user input
+    const handleChange = (e) => {
+        const { name, value } = e.target;
 
-    let addFormFields = () => {
-        setFormValues([...formValues, { type: "", value: "", label: "" }])
-    }
+        if (formValues.type === 'radio') {
+            if (['label1', 'label2', 'name', 'status'].includes(name)) {
+                setFormValues({ ...formValues, [name]: value });
+            }
+        } else {
+            setFormValues({ ...formValues, [name]: value });
+        }
 
-    let removeFormFields = (i) => {
-        let newFormValues = [...formValues];
-        newFormValues.splice(i, 1);
-        setFormValues(newFormValues)
-    }
+    };
 
-    let handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(formValues);
-    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    const inputTypes = [
-        'button', 'checkbox', 'datetime-local', 'email', 'file',
-        'number', 'password', 'radio',
-        'text'
-    ];
+        if (formValues.type === 'radio') {
+            const { label1, label2, name, status, type } = formValues;
+            const radioFormData = { label1, label2, name, status, type };
+            console.log('Radio form data:', radioFormData);
+        } else {
+            console.log('Form values:', formValues);
+        }
+    };
 
+
+    // let handleSubmit = (event) => {
+    //     event.preventDefault();
+
+
+    //     const mainText = {
+    //         id: `radiotext${props.selectedGrid[0]}`,
+    //         texts: formValues
+    //     }
+
+    //     const updatedItems = props.gridsBlock.map((item) => {
+    //         if (item.mainid === props.selectedGrid[1]) {
+    //             item.items.forEach((innerItem) => {
+    //                 if (innerItem.id === mainText.id.replace(/^\D+/g, '')) {
+    //                     if (!innerItem.addedInputText) {
+    //                         innerItem.addedInputText = [];
+    //                     }
+    //                     innerItem.addedInputText.push(...formValues);
+    //                 }
+    //             });
+    //         }
+    //         return item;
+    //     });
+    // }
+
+    const filterOfSubComponent = props.gridsBlock.find(x => x.mainid === props.selectedGrid[1]).items
+        .find(item => item.id === props.selectedGrid[0]);
+
+    console.log(filterOfSubComponent?.addedRadioText);
     return (
-        <form onSubmit={handleSubmit}>
-            {formValues.map((element, index) => (
-                <div key={index}>
-
-                    <div className="form-inline mt-2" >
-                        <label>Input Type</label>
-                        <select className='p-2' name='type' onChange={(e) => handleChange(index, e)}>
-                            {inputTypes.map(item => (
-                                <option value={item}>{item}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className='form-inline mt-2'>
-                        <label>Input Value</label>
-                        <input type="text" name='value' onChange={(e) => handleChange(index, e)} />
-                    </div>
-                    <div className='form-inline mt-2'>
-                        <label>Input Label</label>
-                        <input type="text" name='label' onChange={(e) => handleChange(index, e)} />
-                    </div>
-                    {
-                        index ?
-                            <button type="button" className="button remove" onClick={() => removeFormFields(index)}>X</button>
-                            : null
-                    }
-                </div>
-            ))}
-            <div className="button-section mt-2">
-                <Button type="button" onClick={() => addFormFields()}>Add</Button>
-                <Button type="submit">Submit</Button>
+        // <form onSubmit={handleSubmit}>
+        <>
+            <div className="form-inline mt-2" >
+                <label>Input Type</label>
+                <select className='p-2' name='type' value={formValues?.type} onChange={(e) => handleChange(e)}>
+                    <option hidden>Please select input field</option>
+                    <option value="datetime-local">Datetime field</option>
+                    <option value="radio">Radio field</option>
+                    <option value="select">Dropdown</option>
+                </select>
             </div>
-        </form>
+            <hr />
+            {formValues.type === "datetime-local" && (
+                <>
+                    <div className='form-inline mt-2'>
+                        <label>From date</label>
+                        <input type={formValues.type} name='value' onChange={(e) => handleChange(e)} />
+                    </div>
+                    <div className='form-inline mt-2'>
+                        <label>To date</label>
+                        <input type={formValues.type} name='label' onChange={(e) => handleChange(e)} />
+                    </div>
+                </>
+            )}
+            {
+                formValues.type === "radio" && filterOfSubComponent?.addedRadioText === undefined ?
+                    <Radiovalue {...props} />
+                    :
+                    filterOfSubComponent?.addedRadioText !== undefined &&
+                        <h6>This block alredy have radio value if you want to update radio select it</h6>
+            }
+
+        </>
     )
 }
 
