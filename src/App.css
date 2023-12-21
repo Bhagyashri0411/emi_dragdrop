@@ -43,12 +43,15 @@ img {
   padding: 0 15px;
 }
 
-.form-inline label {
+.form-inline label,
+.form-inline select.status {
+  padding: 0.4rem;
   flex: 1;
 }
 
 .form-inline input,
-.form-inline select {
+.form-inline select,
+.form-inline textarea {
   width: 100%;
   padding: 3px;
   flex: 2;
@@ -61,11 +64,13 @@ img {
 }
 
 .button {
-  padding: 10px 20px;
+  padding: 5px 10px;
   background-color: dodgerblue;
   border: 1px solid #ddd;
   color: white;
   cursor: pointer;
+  font-size: 15px;
+  height: 100%;
 }
 
 .button:hover {
@@ -78,4 +83,9 @@ img {
 
 .remove:hover {
   background-color: rgb(187, 43, 43);
+}
+
+.add-box {
+  border: 1px dashed;
+  height: 35px;
 }

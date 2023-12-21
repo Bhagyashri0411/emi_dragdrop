@@ -9,11 +9,55 @@
     position: absolute;
     cursor: pointer;
 }
+
 /* GridComponent */
 
-.grid-container{
+.grid-container {
     display: grid;
 }
+
 .grid-item {
     border: 1px solid;
+}
+
+.radio-box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.radio-box h5 {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.radio-box .radio {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* table css */
+
+/* Table styles */
+.tableComponents table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Table header */
+.tableComponents th {
+    border: 1px solid #ddd;
+    font-weight: 500;
+    text-align: left;
+    padding: 8px;
+}
+
+
+/* Table body - cell styles */
+.tableComponents td {
+    border: 1px solid #ddd;
+    padding: 8px;
 }
