@@ -1,0 +1,35 @@
+.card-header .cardsubheading {
+    margin: 0;
+    font-size: 14px;
+}
+
+.cardheaderbox {
+    display: flex;
+    gap: 5px;
+    color: #d9d9d9;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardheaderbox h5 {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.cardheaderbox .radio {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cardheaderbox .datefromto {
+    font-size: 13px;
+    background-color: transparent;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    color: #d9d9d9;
+}
+
+.cardheaderbox .datefromto::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}

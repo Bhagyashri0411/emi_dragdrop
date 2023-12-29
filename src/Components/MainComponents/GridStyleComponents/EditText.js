@@ -10,14 +10,18 @@ import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import FontFamiliesList from '../../../StyleSection/FontFamiliesList';
 
 export default function EditText(props) {
-
-
     const updatedGrid = [...props.gridsBlock];
 
-    // get text array
-    const filterOfTextArray = props.gridsBlock.find(x => x.mainid === props.selectedText[2]).items
-        .find(item => item.id === props.selectedText[1]).addedText.find(text => text.id === props.selectedText[0]);
+    let filterOfTextArray = props.gridsBlock.find(x => x.mainid === props.selectedText[2]).items.find(item => item.id === props.selectedText[0]);
 
+    // get text array
+    if (props.selectedText[3] === "header" && filterOfTextArray.hasOwnProperty('addedHeadText')) {
+        filterOfTextArray = filterOfTextArray.addedHeadText.find(text => text.textid === props.selectedText[1]);
+    }
+
+    if (props.selectedText[3] === "body" && filterOfTextArray.hasOwnProperty('addedBodyText')) {
+        filterOfTextArray = filterOfTextArray.addedBodyText.find(text => text.id === props.selectedText[1]);
+    };
 
     const handleFontStyles = (buttonName) => {
         const isSelected = filterOfTextArray.styles.fontstyle.includes(buttonName);
@@ -57,7 +61,7 @@ export default function EditText(props) {
             <div className='mt-4'>
                 <div className='blockflex'>
                     <span>Elements</span>
-                    <Form.Select id='element' value={filterOfTextArray.type} onChange={(e) => editHeading(e, "type")}>
+                    <Form.Select value={filterOfTextArray.type} onChange={(e) => editHeading(e, "type")}>
                         {headings}
                         <option value={`p`}>Paragraph </option>
                         <option value={`span`}>Span</option>
@@ -65,11 +69,19 @@ export default function EditText(props) {
                 </div>
 
 
-                <h6 className='px-3'>Input</h6>
+                <h6 className='px-3'>Main Heading</h6>
                 <div className='blockflex'>
-                    <Form.Control as="textarea" rows={3} id='inputtext' value={filterOfTextArray.text} onChange={(e) => editHeading(e, 'text')} />
+                    <Form.Control as="textarea" rows={2} value={filterOfTextArray.toptext} onChange={(e) => editHeading(e, 'toptext')} />
                 </div>
-
+                {
+                    props.selectedText[3] === "header" &&
+                    <>
+                        <h6 className='px-3'>Sub Heading</h6>
+                        <div className='blockflex'>
+                            <Form.Control as="input" rows={2} value={filterOfTextArray.subText} onChange={(e) => editHeading(e, 'subText')} />
+                        </div>
+                    </>
+                }
             </div>
             <hr />
             <div className='blockflex'>

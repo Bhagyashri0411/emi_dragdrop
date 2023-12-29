@@ -25,8 +25,7 @@ const HomeMainSection = React.memo((props) => {
         setDragging(false);
         props.setSelectedBox(null);
         props.setSelectedGrid(["", ""])
-        props.setSelectedText(["", "", ""]);
-        props.setSelectPart(["", null]);
+        props.setSelectedText(["", "", "", null]);
     };
 
     const data = props.propertyPage;
