@@ -5,7 +5,7 @@ import TableByManually from './TableFormat/TableByManually';
 
 export default function MakeTableElements(props) {
 
-    const [openTable, setOpenTable] = React.useState();
+    const [openTable, setOpenTable] = React.useState("url");
 
     const handleOpenTable = (e) => {
         setOpenTable(e)
@@ -16,8 +16,8 @@ export default function MakeTableElements(props) {
                 <Button onClick={() => handleOpenTable("url")}>Table by Url</Button>
                 <Button onClick={() => handleOpenTable("manually")}>Manually</Button>
             </div>
-            {openTable === "url"?
-            <TableByUrl {...props} />:<TableByManually/>
+            {openTable === "url" ?
+                <TableByUrl {...props} /> : <TableByManually />
             }
         </>
     )

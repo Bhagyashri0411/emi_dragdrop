@@ -41,22 +41,20 @@ export default function Radiovalue(props) {
         const heading = document.getElementById("heading").value;
 
         const mainText = {
-            id: `radiotext${props.selectedGrid[0]}`,
+            id: `radio${props.selectedText[0]}`,
             heading: heading,
             texts: [...labels]
         }
 
         const updatedItems = props.gridsBlock.map((item) => {
-            if (item.mainid === props.selectedGrid[1]) {
-                item.items.forEach((innerItem) => {
-                    if (innerItem.id === mainText.id.replace(/^\D+/g, '')) {
-                        if (!innerItem.addedRadioText) {
-                            innerItem.addedRadioText = [];
-                        }
-                        innerItem.addedRadioText.push(mainText);
+            item.items.forEach((innerItem) => {
+                if (innerItem.id === mainText.id.replace(/^\D+/g, '')) {
+                    if (!innerItem.addedRadioText) {
+                        innerItem.addedRadioText = [];
                     }
-                });
-            }
+                    innerItem.addedRadioText.push(mainText);
+                }
+            });
             return item;
         });
         props.setGridsBlock([...updatedItems]);

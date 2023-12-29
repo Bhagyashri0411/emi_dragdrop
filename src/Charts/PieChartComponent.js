@@ -5,7 +5,7 @@ import "./graphs.css"
 export default function PieChartComponent() {
     return (
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-            <div style={{ position: 'relative', width: '310px', height: '100%' }}>
+            {/* <div style={{ position: 'relative', width: '310px', height: '100%' }}> */}
                 <PieChart
                     series={[
                         {
@@ -18,13 +18,13 @@ export default function PieChartComponent() {
                             outerRadius: 60, // Increase outer radius to accommodate labels
                         },
                     ]}
-                    width={400} height={200}
+                    width={300} height={200}
                 />
                 {/* Custom element to display percentage in the center */}
                 <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
                     <div style={{ fontSize: '20px' }}>50</div>
                 </div>
-            </div>
+            {/* </div> */}
             {/* Example of labels as rectangles inside circles */}
             {/* <div style={{ position: 'absolute', top: '50px', left: '280px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>

@@ -22,9 +22,7 @@ const Main = () => {
     // Selection
     const [selectedBox, setSelectedBox] = useState(null);
     const [selectedGrid, setSelectedGrid] = useState(["", ""]);
-    const [selectedText, setSelectedText] = useState(["", "", ""]);
-    // part
-    const [selectPart, setSelectPart] = React.useState(["", null]);
+    const [selectedText, setSelectedText] = useState([ "", "", "", null]);
 
 
     // Close and open side bar
@@ -84,7 +82,7 @@ const Main = () => {
         setGridsBlock([...gridsBlock, newGrid]);
 
     };
-
+    
     return (
         <>
             <div className='MainBackground'>
@@ -119,9 +117,6 @@ const Main = () => {
                                     selectedText={selectedText}
                                     setSelectedText={setSelectedText}
 
-                                    // select part from card
-                                    selectPart={selectPart}
-                                    setSelectPart={setSelectPart}
                                 />
                             </div>
 
@@ -139,8 +134,7 @@ const Main = () => {
                                     />
                                 </div>
                                 :
-
-                                selectedGrid[0] || selectedText[0] || selectPart[0] ?
+                                selectedGrid[0] || selectedText[0] ?
 
                                     <div className='thirdColumn grid' style={{ width: openStyleBox ? "360px" : "0" }}>
                                         <GridOptionComponent
@@ -151,8 +145,7 @@ const Main = () => {
                                             selectedGrid={selectedGrid}
                                             handleAddGrid={handleAddGrid}
                                             selectedText={selectedText}
-                                            // grid part
-                                            selectPart={selectPart}
+                                            setSelectedText={setSelectedText}
                                         />
                                     </div>
                                     :
@@ -172,5 +165,6 @@ const Main = () => {
         </>
     )
 }
+
 
 export default Main
