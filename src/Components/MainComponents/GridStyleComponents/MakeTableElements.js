@@ -13,8 +13,8 @@ export default function MakeTableElements(props) {
     return (
         <>
             <div className='blockflex'>
-                <Button onClick={() => handleOpenTable("url")}>Table by Url</Button>
-                <Button onClick={() => handleOpenTable("manually")}>Manually</Button>
+                <button className={`button ${openTable === "url" && "selectButton"}`} onClick={() => handleOpenTable("url")}>Table by Url</button>
+                <button className={`button ${openTable === "manually" && "selectButton"}`} onClick={() => handleOpenTable("manually")}>Manually</button>
             </div>
             {openTable === "url" ?
                 <TableByUrl {...props} /> : <TableByManually />

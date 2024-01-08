@@ -1,7 +1,8 @@
 import React from 'react';
-import { BorderSection, MarginSection, BackgroundSection } from '../../../StyleSection/StyleSection';
-import CardHeader, { CardHeaderDatePickerShow, CardHeaderRadioShow } from './Card/CardHeader';
-import CardBody, { DoughnutChart, TableInCardBody } from './Card/CardBody';
+import { BorderSection, MarginSection, BackgroundSection } from '../../CommonComponents/StyleSection/StyleSection';
+import PieChartComponent from '../../CommonComponents/Charts/PieChartComponent';
+import CardBody, { TableInCardBody } from './CardBody';
+
 
 function GridComponent(props) {
 
@@ -37,43 +38,25 @@ function GridComponent(props) {
                                             props.setSelectedGrid([item.id, gridBlock.mainid]);
                                         }}
                                     >
-                                        <div className='card-header border-0'>
-                                            {
-                                                item.addedHeadText ? <CardHeader {...props} item={item} cardheader={item.addedHeadText[0]} gridBlock={gridBlock} />
-                                                    :
-                                                item.addedRadioText ? <CardHeaderRadioShow {...props} item={item} radio={item.addedRadioText[0]} gridBlock={gridBlock} />
-                                                    :
-                                                item.addedDatePicker ? <CardHeaderDatePickerShow {...props} item={item} gridBlock={gridBlock} datepicker={item.addedDatePicker} />
-                                                    :
-                                                <div className={`add-box ${props.selectedText[0] === item.id && props.selectedText[3] === "empty_header" && "selected"}`} 
-                                                onClick={(e) => { e.stopPropagation(); props.setSelectedText([item.id, "", gridBlock.mainid, "empty_header"]) }} />
-                                            }
-                                        </div>
+                                        {
+                                            item.addedHeadText && <CardBody data={item.addedHeadText} item={item} gridBlock={gridBlock} {...props} />
+                                        }
 
-                                        <div className='card-body'>
-                                            {
-                                                item.addedBodyText ? <CardBody {...props} addedBodyText={item.addedBodyText} item={item} gridBlock={gridBlock} />
-                                                    :
-                                                    item.tableData ?
-                                                        <TableInCardBody data={item.tableData} />
-                                                        :
-                                                        item.addedDoughnutsData ? <DoughnutChart />:
-                                                        <div className={`add-box ${props.selectedText[0] === item.id && props.selectedText[3] === "empty_body" && "selected"}`} 
-                                                        onClick={(e) => { e.stopPropagation(); props.setSelectedText([item.id, "", gridBlock.mainid, "empty_body"]) }} />
+                                        {
+                                            item.tableData && <TableInCardBody data={item.tableData} />
+                                        }
+                                        {item.addedDoughnutsData && <PieChartComponent {...props} item={item} gridBlock={gridBlock} data={item.addedDoughnutsData} />}
 
-                                            }
-                                        </div>
-                                        <div className='card-footer border-0'></div>
                                     </div>
                                 );
                             })
                         }
 
-                    </div >
+                    </div>
                 )
             }
             )}
-        </div >
+        </div>
     );
 }
 

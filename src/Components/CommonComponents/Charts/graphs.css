@@ -1,0 +1,50 @@
+.mainGraph {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.css-1u0lry5-MuiChartsLegend-root {
+    display: none;
+}
+
+.css-1mhcdve-MuiPieArc-root {
+    stroke-width: 0 !important;
+}
+
+.blockgraph {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 3px;
+}
+
+.iconround {
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    border-radius: 50%;
+}
+
+.blockgraph span {
+    color: #d9d9d9;
+    font-size: 0.9rem;
+}
+
+.MuiPieArc-root::after {
+    content: "";
+}
+
+.mainGraphText {
+    position: absolute;
+    top: 50%;
+    left: 32%;
+    transform: translate(-50%, -50%);
+    text-align: center
+}
+
+.mainGraphText h3 {
+    color: #d9d9d9;
+    font-size: 18px;
+    margin: 0;
+}

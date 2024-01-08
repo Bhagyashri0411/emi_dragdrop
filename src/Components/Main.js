@@ -1,39 +1,29 @@
 import React, { useState } from 'react';
 import HomeMainSection from './Dashboardpage/HomeMainSection';
 import Sidebar from './MainComponents/Sidebar';
-import "./MainComponents/mainComponents.css";
 import GridOptionComponent from './MainComponents/LeftSidebarOptionComponent/GridOptionComponent';
 import BoxOptionCompoent from './MainComponents/LeftSidebarOptionComponent/BoxOptionComponent';
 import MainPageOptionComponent from './MainComponents/LeftSidebarOptionComponent/MainPageOptionComponent';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import "./MainComponents/mainComponents.css";
+import RandomNumberGenerator from './CommonComponents/RandomNumberGenerator';
 
 const Main = () => {
-    const width = "220px";
+    const width = "350px";
 
-    const [open, setOpen] = React.useState(true);
-    const [openStyleBox, setOpenStyleBox] = React.useState(true);
-
-    // const for card
     const [boxes, setBoxes] = useState([]);
     // const for grid collection
     const [gridsBlock, setGridsBlock] = useState([]);
+    const [graph, setGraph] = useState(false);
     // main page style
     const [propertyPage, setPropertyPage] = React.useState();
 
     // Selection
     const [selectedBox, setSelectedBox] = useState(null);
     const [selectedGrid, setSelectedGrid] = useState(["", ""]);
-    const [selectedText, setSelectedText] = useState([ "", "", "", null]);
+    const [selectedText, setSelectedText] = useState(["", "", "", null]);
 
-
-    // Close and open side bar
-    const handleOpenandCloseDrawer = () => {
-        setOpen(!open);
-    };
-
-    // close and open stylecomponent
-    const handleOpenandCloseStyleDrawer = () => {
-        setOpenStyleBox(!openStyleBox);
-    }
 
     // Add Card
     const handleAddBox = () => {
@@ -51,7 +41,6 @@ const Main = () => {
         };
         setBoxes([...boxes, newBox]);
     };
-
 
     // function for add grid
     const handleAddGrid = (columns, rows) => {
@@ -82,23 +71,34 @@ const Main = () => {
         setGridsBlock([...gridsBlock, newGrid]);
 
     };
-    
+
+    const [isTrue, setIsTrue] = useState(false);
+
+    const toggleValue = () => {
+        setIsTrue((prevValue) => !prevValue);
+    };
+
+    const handleAddDounghut =()=>{
+        setGraph(true);
+    }
+ 
+
     return (
         <>
             <div className='MainBackground'>
                 <div className='container-fluid'>
                     <div className='mainLayout'>
-                        <div className='fisrtColumn'
-                            style={{ width: open ? width : '' }}>
-                            <Sidebar open={open}
-                                handleFun={handleOpenandCloseDrawer}
+                        <div className='fisrtColumn'>
+                            <Sidebar
                                 handleAddBox={handleAddBox}
                                 handleAddGrid={handleAddGrid}
+                                handleAddDounghut = {handleAddDounghut}
                                 setSelectedBox={setSelectedBox}
                                 setSelectedGrid={setSelectedGrid}
+                                
                             />
                         </div>
-                        <div className='secondColumn' style={{ width: open ? `calc(100% - ${width})` : '100%' }}>
+                        <div className='secondColumn' style={{ width: '100%' }}>
                             <div className='pt-3'>
                                 <HomeMainSection
                                     propertyPage={propertyPage}
@@ -116,48 +116,49 @@ const Main = () => {
                                     // elements for text in grids
                                     selectedText={selectedText}
                                     setSelectedText={setSelectedText}
-
+                                    // graph
+                                    graph ={graph}
                                 />
                             </div>
 
                         </div>
 
-                        {
-                            selectedBox ?
-                                <div className='thirdColumn' style={{ width: openStyleBox ? "350px" : "0" }}>
-                                    <BoxOptionCompoent
-                                        handleFun={handleOpenandCloseStyleDrawer}
-                                        open={openStyleBox}
-                                        boxes={boxes}
-                                        setBoxes={setBoxes}
-                                        selectedBox={selectedBox}
-                                    />
+                        <div className='thirdColumn' style={{ width: isTrue ? "25px" : width }}>
+                            <div className="subheading">
+                                <div className='icon' onClick={toggleValue}>
+                                    {isTrue ?
+                                        <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />
+                                    }
                                 </div>
-                                :
-                                selectedGrid[0] || selectedText[0] ?
+                            </div>
 
-                                    <div className='thirdColumn grid' style={{ width: openStyleBox ? "360px" : "0" }}>
-                                        <GridOptionComponent
-                                            handleFun={handleOpenandCloseStyleDrawer}
-                                            open={openStyleBox}
-                                            gridsBlock={gridsBlock}
-                                            setGridsBlock={setGridsBlock}
-                                            selectedGrid={selectedGrid}
-                                            handleAddGrid={handleAddGrid}
-                                            selectedText={selectedText}
-                                            setSelectedText={setSelectedText}
+                            <div className={`${isTrue ? 'd-none' : 'd-block'}`}>
+                                {
+                                    selectedBox ?
+                                        <BoxOptionCompoent
+                                            boxes={boxes}
+                                            setBoxes={setBoxes}
+                                            selectedBox={selectedBox}
                                         />
-                                    </div>
-                                    :
-                                    <div className='thirdColumn Mainpage' style={{ width: openStyleBox ? "250px" : "0" }}>
-                                        <MainPageOptionComponent
-                                            open={openStyleBox}
-                                            handleFun={handleOpenandCloseStyleDrawer}
-                                            setPropertyPage={setPropertyPage}
-                                            propertyPage={propertyPage}
-                                        />
-                                    </div>
-                        }
+                                        :
+                                        selectedGrid[0] || selectedText[0] ?
+
+                                            <GridOptionComponent
+                                                gridsBlock={gridsBlock}
+                                                setGridsBlock={setGridsBlock}
+                                                selectedGrid={selectedGrid}
+                                                handleAddGrid={handleAddGrid}
+                                                selectedText={selectedText}
+                                                setSelectedText={setSelectedText}
+                                            />
+                                            :
+                                            <MainPageOptionComponent
+                                                setPropertyPage={setPropertyPage}
+                                                propertyPage={propertyPage}
+                                            />
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
 

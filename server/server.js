@@ -53,6 +53,27 @@ app.get('/api/data', (req, res) => {
     res.json(data);
 });
 
+// api for dougnut
+app.get('/api/graph', (req, res) => {
+
+    const data = [
+        {
+            "id": 1704460498915,
+            "label": "Liquid",
+            "value": "54.41",
+            "color": "#ffa600"
+        },
+        {
+            "id": 1704460504626,
+            "label": "Gas",
+            "value": "45.59",
+            "color": "green"
+        },
+    ]
+
+    res.json(data);
+});
+
 const PORT = 3001;
 
 app.listen(PORT, () => {

@@ -7,8 +7,8 @@ import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
-import FontFamiliesList from '../../../../StyleSection/FontFamiliesList';
 import { Button } from "react-bootstrap";
+import FontFamiliesList from "../../../CommonComponents/StyleSection/FontFamiliesList";
 
 export const CardText = (props) => {
     const [textAdded, setTextAdded] = React.useState(false);
@@ -27,57 +27,6 @@ export const CardText = (props) => {
         }
     };
 
-    // card header
-    const addCardHeadText = () => {
-        // Extracting values from elements
-        const type = document.getElementById('element').value;
-        const mainheading = document.getElementById('mainheading').value;
-        const subheading = document.getElementById('subheading').value || '';
-        const fontSize = document.getElementById('fontsizetext').value;
-        const fontWeight = document.getElementById("fontweighttext").value;
-        const fontFamily = document.getElementById("font-family").value;
-
-        // Creating objText object
-        const objText = {
-            textid:`text${props.selectedText[0]}`,
-            id: Date.now(),
-            toptext: mainheading,
-            subText: subheading,
-            type: type,
-            styles: {
-                fontSize,
-                fontWeight,
-                fontstyle: [...selectedButtons],
-                color,
-                align: alignMent,
-                fontFamily,
-            }
-        };
-
-        // Creating mainText object
-        const mainText = {
-            id: `text${props.selectedText[0]}`,
-            texts: objText
-        };
-
-
-        // Update gridsBlock items
-        const updatedItems = props.gridsBlock.map((item) => {
-            item.items.forEach((innerItem) => {
-                if (innerItem.id === mainText.id.replace(/^\D+/g, '')) {
-                    if (!innerItem.addedHeadText) {
-                        innerItem.addedHeadText = [];
-                    }
-                    innerItem.addedHeadText.push(mainText.texts);
-                }
-            });
-            return item;
-        });
-        // Update state and mark text as added
-        setTextAdded(true);
-
-        props.setGridsBlock([...updatedItems]);
-    };
 
     // card body
     const addCardBodyText = () => {
@@ -122,7 +71,7 @@ export const CardText = (props) => {
             });
             return item;
         });
-        
+
         props.setGridsBlock([...updatedItems]);
     };
 
@@ -135,45 +84,13 @@ export const CardText = (props) => {
         );
     }
 
-    const headings = [];
 
-    for (let i = 1; i <= 6; i++) {
-        headings.push(
-            <option value={`h${i}`} key={i}>Heading {i}</option>
-        )
-    }
 
     if (!textAdded) {
         return (
             <div className='mt-3' >
-                <div className='blockflex'>
-                    <span>Elements</span>
-                    <Form.Select id='element'>
-                        {headings}
-                        <option value={`p`}>Paragraph </option>
-                        <option value={`span`}>Span</option>
-                    </Form.Select>
-                </div>
-                <h6 className='px-3'>Main Heading</h6>
-                <div className='blockflex'>
-                    <Form.Control as="textarea" rows={2} id='mainheading' />
-                </div>
-                {
-                    props.selectedText[3] === "empty_header" &&
-                    <>
-                        <h6 className='px-3'>Sub Heading</h6>
-                        <div className='blockflex'>
-                            <Form.Control as="input" rows={2} id='subheading' />
-                        </div>
-                    </>
-                }
+
                 <hr />
-                <div className='blockflex'>
-                    <span>FontFamily</span>
-                    <Form.Select id='font-family'>
-                        <FontFamiliesList />
-                    </Form.Select>
-                </div>
                 <div className='blockflex'>
                     <div className='block' style={{ flex: 1 }}>
                         <span>FS</span>
@@ -218,7 +135,6 @@ export const CardText = (props) => {
                     </div>
                 </div>
 
-
                 <div className='blockflex'>
                     <div className={`boxbackground ${alignMent === 'left' ? 'select' : ''}`}
                         onClick={() => setAlignMent('left')}>
@@ -237,16 +153,10 @@ export const CardText = (props) => {
                         <FormatAlignJustifyIcon />
                     </div>
                 </div>
-                {
-                    props.selectedText[3] === "empty_header" ?
-                        <div className='d-flex mt-1 justify-content-center'>
-                            <Button type='submit' onClick={addCardHeadText}>Add Text</Button>
-                        </div>
-                        :
-                        <div className='d-flex mt-1 justify-content-center'>
-                            <Button type='submit' onClick={addCardBodyText}>Add Text</Button>
-                        </div>
-                }
+
+                <div className='d-flex mt-3 justify-content-center'>
+                    <Button type='submit' onClick={addCardBodyText}>Edit Text</Button>
+                </div>
             </div>
         )
     }

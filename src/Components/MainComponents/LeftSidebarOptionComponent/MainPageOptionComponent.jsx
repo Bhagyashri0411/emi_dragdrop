@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import DisabledByDefaultOutlinedIcon from '@mui/icons-material/DisabledByDefaultOutlined';
 import SquareIcon from '@mui/icons-material/Square';
 
@@ -38,14 +36,6 @@ export default function MainPageOptionComponent(props) {
 
     return (
         <div className='stylecomponet'>
-            <div className="subheading">
-                <div className='icon' onClick={props.handleFun}>
-                    {props.open ?
-                        <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />
-                    }
-                </div>
-            </div>
-
             <div className='blockflex'>
                 <h6>Background</h6>
                 <div className='block'>

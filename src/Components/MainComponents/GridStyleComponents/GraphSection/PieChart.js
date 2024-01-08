@@ -1,7 +1,7 @@
 import React from 'react';
 import { AgChartsReact } from 'ag-charts-react';
 
-export default function DoughnutChart() {
+export default function PieChart() {
     const options = {
         data: [
             { label: 'Category 1', value: 25 },
@@ -26,7 +26,7 @@ export default function DoughnutChart() {
     };
     return (
         <div style={{ width: '100%', height: '300px' }}>
-            <h6>DoughnutChart</h6>
+            <h6>PieChart</h6>
             <AgChartsReact options={options} />
         </div>
     );

@@ -4,6 +4,7 @@ import GradientIcon from '@mui/icons-material/Gradient';
 import DisabledByDefaultOutlinedIcon from '@mui/icons-material/DisabledByDefaultOutlined';
 import SquareIcon from '@mui/icons-material/Square';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import AddTextInCard from './AddTextInCard';
 
 const BlockSection = (props) => {
     const [showColor, setShowColor] = React.useState(false);
@@ -215,6 +216,7 @@ const BlockSection = (props) => {
             <Border {...props} filterOfMainComponent={filterOfMainComponent} />
             <hr />
 
+            <AddTextInCard {...props} />
 
         </>
     )
