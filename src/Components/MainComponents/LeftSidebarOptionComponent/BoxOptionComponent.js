@@ -1,6 +1,4 @@
 import React from 'react';
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import BlockSection from '../BoxStyleComponents/BlockSection';
 import TextSection from '../BoxStyleComponents/TextSection';
 import "../BoxStyleComponents/Section.css"
@@ -11,13 +9,8 @@ const BoxOptionCompoent = React.memo((props) => {
         <div className='stylecomponet'>
 
             <div className="subheading">
-                <div className='icon' onClick={props.handleFun}>
-                    {props.open ?
-                        <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />
-                    }
-                </div>
 
-                <ul className="nav nav-tabs tabes" id="ex1" role="tablist" style={{ display: props.open ? "": "none" }}>
+                <ul className="nav nav-tabs tabes" id="ex1" role="tablist" >
                     <li className="nav-item" role="presentation">
                         <a className="nav-link active" id="ex1-tab-1" data-bs-toggle="tab" href="#ex1-tabs-1" role="tab" aria-selected="true">
                             Block
@@ -32,7 +25,7 @@ const BoxOptionCompoent = React.memo((props) => {
 
             </div>
 
-            <div className="tab-content mt-2" id="ex1-content" style={{ display: props.open ?"": "none"  }}>
+            <div className="tab-content mt-2" id="ex1-content" >
                 <div className="tab-pane fade show active" id="ex1-tabs-1" aria-labelledby="ex1-tab-1">
                     <BlockSection {...props} />
                 </div>

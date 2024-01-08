@@ -7,6 +7,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
 import CodeIcon from '@mui/icons-material/Code';
+import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 
 import { useState } from "react";
 
@@ -59,11 +60,11 @@ const Sidebar = React.memo(({ open, handleFun, handleAddBox, ...props }) => {
                                 <div className="liIcon" >
                                     <CodeIcon />
                                 </div>
-                                <div className={`litext ${open ? "d-flex" : "d-none"}`}>
+                                {/* <div className={`litext ${open ? "d-flex" : "d-none"}`}>
                                     <h6 className="h6">
                                         Cards
                                     </h6>
-                                </div>
+                                </div> */}
                             </div>
                         </li>
 
@@ -76,11 +77,11 @@ const Sidebar = React.memo(({ open, handleFun, handleAddBox, ...props }) => {
                                 <div className="liIcon" >
                                     <AppsOutlinedIcon />
                                 </div>
-                                <div className={`litext ${open ? "d-flex" : "d-none"}`}>
+                                {/* <div className={`litext ${open ? "d-flex" : "d-none"}`}>
                                     <h6 className="h6">
                                         Grids
                                     </h6>
-                                </div>
+                                </div> */}
                             </div>
                             <Menu
                                 anchorEl={menuEl}
@@ -122,23 +123,18 @@ const Sidebar = React.memo(({ open, handleFun, handleAddBox, ...props }) => {
                                 </MenuItem>
                             </Menu>
                         </li>
+                        <li className={`listyle mt-3 ${clickedDiv === 'div3' ? 'checked' : ''}`}
+                            onClick={() => handleDivClick('div3')}>
+
+                            <div className="lifirstDiv" onClick={props.handleAddDounghut}>
+                                <div className="liIcon" >
+                                    <DonutLargeIcon />
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
-                <div className="firstDive">
-                    <div className="subheading">
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={handleFun}
-                            edge="start"
-                        >
-                            {open ?
-                                <ArrowBackIosNewIcon /> : <ArrowForwardIosOutlinedIcon />
-                            }
-                        </IconButton>
-                    </div>
-                </div>
-            </div >
+            </div>
 
         </>
     )

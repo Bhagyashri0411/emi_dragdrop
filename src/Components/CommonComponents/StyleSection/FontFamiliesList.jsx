@@ -28,4 +28,17 @@ const FontFamiliesList = () => {
     );
 };
 
+export const FontSize = () => {
+    const fontSize = [
+        11, 12, 14, 18, 25, 26, 28
+    ]
+    return (
+        <>
+            {fontSize.map((font, index) => (
+                <option key={index} value={font} >{font}</option>
+            ))}
+        </>
+    )
+}
+
 export default FontFamiliesList;

@@ -7,21 +7,15 @@ import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
-import FontFamiliesList from '../../../StyleSection/FontFamiliesList';
+import FontFamiliesList from '../../CommonComponents/StyleSection/FontFamiliesList';
 
 export default function EditText(props) {
     const updatedGrid = [...props.gridsBlock];
 
-    let filterOfTextArray = props.gridsBlock.find(x => x.mainid === props.selectedText[2]).items.find(item => item.id === props.selectedText[0]);
+    let filterOfTextArray = props.gridsBlock.find(x => x.mainid === props.selectedText[0]).items.find(item => item.id === props.selectedText[1]);
 
-    // get text array
-    if (props.selectedText[3] === "header" && filterOfTextArray.hasOwnProperty('addedHeadText')) {
-        filterOfTextArray = filterOfTextArray.addedHeadText.find(text => text.textid === props.selectedText[1]);
-    }
+    filterOfTextArray = filterOfTextArray.addedHeadText.find(text => text.id === props.selectedText[2]);
 
-    if (props.selectedText[3] === "body" && filterOfTextArray.hasOwnProperty('addedBodyText')) {
-        filterOfTextArray = filterOfTextArray.addedBodyText.find(text => text.id === props.selectedText[1]);
-    };
 
     const handleFontStyles = (buttonName) => {
         const isSelected = filterOfTextArray.styles.fontstyle.includes(buttonName);
@@ -59,37 +53,14 @@ export default function EditText(props) {
     return (
         <>
             <div className='mt-4'>
-                <div className='blockflex'>
-                    <span>Elements</span>
-                    <Form.Select value={filterOfTextArray.type} onChange={(e) => editHeading(e, "type")}>
-                        {headings}
-                        <option value={`p`}>Paragraph </option>
-                        <option value={`span`}>Span</option>
-                    </Form.Select>
-                </div>
 
-
-                <h6 className='px-3'>Main Heading</h6>
+                <h6 className='px-3 mb-0'>Main Heading</h6>
                 <div className='blockflex'>
-                    <Form.Control as="textarea" rows={2} value={filterOfTextArray.toptext} onChange={(e) => editHeading(e, 'toptext')} />
+                    <Form.Control as="textarea" rows={2} value={filterOfTextArray.text} onChange={(e) => editHeading(e, 'text')} />
                 </div>
-                {
-                    props.selectedText[3] === "header" &&
-                    <>
-                        <h6 className='px-3'>Sub Heading</h6>
-                        <div className='blockflex'>
-                            <Form.Control as="input" rows={2} value={filterOfTextArray.subText} onChange={(e) => editHeading(e, 'subText')} />
-                        </div>
-                    </>
-                }
             </div>
             <hr />
-            <div className='blockflex'>
-                <span>FontFamily</span>
-                <Form.Select id='font-family' value={filterOfTextArray.styles.fontFamily} onChange={(e) => editHeading(e, "styles.fontFamily")}>
-                    <FontFamiliesList />
-                </Form.Select>
-            </div>
+            
             <div className='blockflex'>
                 <div className='block' style={{ flex: 1 }}>
                     <span>FS</span>
@@ -137,25 +108,6 @@ export default function EditText(props) {
                 </div>
             </div>
 
-
-            <div className='blockflex'>
-                <div className={`boxbackground ${filterOfTextArray.styles.align === 'left' ? 'select' : ''}`}
-                    onClick={() => editHeading('left', 'align')}>
-                    <FormatAlignLeftIcon />
-                </div>
-                <div className={`boxbackground ${filterOfTextArray.styles.align === 'center' ? 'select' : ''}`}
-                    onClick={() => editHeading('center', 'align')}>
-                    <FormatAlignCenterIcon />
-                </div>
-                <div className={`boxbackground ${filterOfTextArray.styles.align === 'right' ? 'select' : ''}`}
-                    onClick={() => editHeading('right', 'align')}  >
-                    <FormatAlignRightIcon />
-                </div>
-                <div className={`boxbackground ${filterOfTextArray.styles.align === 'justify' ? 'select' : ''}`}
-                    onClick={() => editHeading('justify', 'align')}  >
-                    <FormatAlignJustifyIcon />
-                </div>
-            </div>
         </>
     );
 };

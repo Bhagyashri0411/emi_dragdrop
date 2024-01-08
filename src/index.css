@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@1,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@1,700&display=swap'); */
 
 
 
@@ -29,9 +29,7 @@
 body {
   margin: 0px;
   font-size: 1.25rem;
-  font-family: 'Montserrat', sans-serif;
-  font-family: 'Poppins', sans-serif;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.625;
   background-color: var(--backgroundColor) !important;
 }
@@ -42,8 +40,41 @@ a:visited {
   text-decoration: none !important;
 }
 
+img{
+  max-width: 100%;
+}
+
 .card {
   border-radius: 12px;
   box-shadow: 0 6px 10px -4px rgba(0, 0, 0, .15);
   background-color: #fff;
+}
+
+.box-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.box {
+  width: 100%;
+  height: 100%;
+}
+
+.draggable-text {
+  position: absolute;
+  color: #fff;
+  padding: 2px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Graph */
+.canvasjs-chart-canvas{
+  height: 250px !important;
+  width: 200px !important;
+}
+.canvasjs-chart-credit{
+  display: none !important;
 }

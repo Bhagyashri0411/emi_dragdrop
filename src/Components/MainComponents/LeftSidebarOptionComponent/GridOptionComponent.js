@@ -3,8 +3,6 @@ import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import ColumnAndRow from '../GridStyleComponents/ColumnAndRow'
 import BlockSection from '../GridStyleComponents/BlockSection';
-import DoughnutGraph from '../../GraphComponent/DoughuntGraph';
-import PieChartComponent from '../../../Charts/PieChartComponent';
 import MakeTableElements from '../GridStyleComponents/MakeTableElements';
 import { CardText } from '../GridStyleComponents/Texts/CardText';
 import InputForm from '../GridStyleComponents/InputForm';
@@ -14,19 +12,12 @@ import EditDatePicker from '../GridStyleComponents/EditFields/EditDatePicker';
 import AddGraphType from '../GridStyleComponents/GraphSection/AddGraphType';
 
 const GridOptionComponent = React.memo((props) => {
-  console.log(props.selectedText[1]);
+
   return (
     <div className='stylecomponet'>
 
-      <div className="subheading">
-        <div className='icon' onClick={props.handleFun}>
-          {props.open ?
-            <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />
-          }
-        </div>
-
-        <ul className="nav nav-tabs tabes" id="grid" role="tablist" style={{ display: props.open ? "" : 'none' }}>
-          {props.selectedGrid[0] === 'open' &&
+        <ul className="nav nav-tabs tabes" id="grid" role="tablist">
+          {props.selectedGrid[0] === '' &&
             <li className="nav-item" role="presentation">
               <a className="nav-link active">
                 Grid format
@@ -34,22 +25,17 @@ const GridOptionComponent = React.memo((props) => {
             </li>
           }
 
-          {props.selectedText[1] === "" && props.selectedText[3] === "empty_header" &&
+          {props.selectedText[3] === "text" &&
             <>
               <li className="nav-item" role="presentation">
-                <a className="nav-link active" id="grid-tab-1" data-bs-toggle="tab" href="#grid-tabs-1" role="tab" aria-selected="true">
+                <a className="nav-link active">
                   Add Heading
-                </a>
-              </li>
-              <li className="nav-item" role="presentation">
-                <a className="nav-link" id="grid-tab-2" data-bs-toggle="tab" href="#grid-tabs-2" role="tab" aria-selected="true">
-                  Add Input
                 </a>
               </li>
             </>
           }
 
-          {props.selectedText[1].includes("text") && props.selectedText[3] === "header" &&
+          {/* {props.selectedText[1].includes("text") && props.selectedText[3] === "header" &&
             <li className="nav-item" role="presentation">
               <a className="nav-link active">
                 Edit Text
@@ -70,13 +56,18 @@ const GridOptionComponent = React.memo((props) => {
                 edit datepicker
               </a>
             </li>
-          }
+          } */}
 
           {props.selectedText[3] == "empty_body" &&
             <>
+            </>
+          }
+
+          {props.selectedGrid[1] !== "" &&
+            <>
               <li className="nav-item" role="presentation">
-                <a className="nav-link active" id="grid-tab-3" data-bs-toggle="tab" href="#grid-tabs-3" role="tab" aria-selected="true">
-                  Text
+                <a className="nav-link active" id="grid-tab-2" data-bs-toggle="tab" href="#grid-tabs-2" role="tab" aria-selected="true">
+                  Block
                 </a>
               </li>
               <li className="nav-item" role="presentation">
@@ -91,33 +82,22 @@ const GridOptionComponent = React.memo((props) => {
               </li>
             </>
           }
-
-          {props.selectedGrid[1] !== "" &&
-            <li className="nav-item" role="presentation">
-              <a className="nav-link active" id="grid-tab-2" data-bs-toggle="tab" href="#grid-tabs-2" role="tab" aria-selected="true">
-                Block
-              </a>
-            </li>}
         </ul>
-      </div>
 
 
       {/* Grid style component */}
-      <div className="tab-content mt-2" id="grid-content" style={{ display: props.open ? "" : 'none' }}>
-        {props.selectedGrid[0] === "open" && <ColumnAndRow {...props} />}
+      <div className="tab-content mt-2" id="grid-content">
+        {props.selectedGrid[0] === "" && <ColumnAndRow {...props} />}
 
-        {props.selectedText[1] === "" && props.selectedText[3] === "empty_header" &&
+        {props.selectedText[3] === "text" &&
           <>
-            <div className="tab-pane active" id="grid-tabs-1" aria-labelledby="1">
-              <CardText {...props} />
-            </div>
-            <div className="tab-pane" id="grid-tabs-2" aria-labelledby="1">
-              <InputForm {...props} />
+            <div className="tab-pane active">
+              <EditText {...props} />
             </div>
           </>
         }
 
-        {props.selectedText[1].includes("text") &&
+        {/* {props.selectedText[1].includes("text") &&
           <EditText {...props} />
         }
 
@@ -134,6 +114,13 @@ const GridOptionComponent = React.memo((props) => {
             <div className="tab-pane active" id="grid-tabs-3" aria-labelledby="3">
               <CardText {...props} />
             </div>
+          </>
+        } */}
+        {props.selectedGrid[1] !== "" &&
+          <>
+            <div className="tab-pane active" id="grid-tabs-2" aria-labelledby="grid-tab-2">
+              <BlockSection {...props} />
+            </div>
             <div className="tab-pane" id="grid-tabs-4" aria-labelledby="4">
               <AddGraphType {...props} />
             </div>
@@ -141,11 +128,6 @@ const GridOptionComponent = React.memo((props) => {
               <MakeTableElements {...props} />
             </div>
           </>
-        }
-        {props.selectedGrid[1] !== "" &&
-          <div className="tab-pane active" id="grid-tabs-2" aria-labelledby="grid-tab-2">
-            <BlockSection {...props} />
-          </div>
         }
 
       </div>

@@ -44,3 +44,44 @@
     border: 1px solid #ddd;
     padding: 8px;
 }
+
+/* Fontchanges */
+.fontBox {
+    position: absolute;
+    top: 22px;
+}
+
+.firstfontBox {
+    display: flex;
+    gap: 4px;
+}
+
+.fontBoxMain {
+    position: fixed;
+    background-color: #4D4D4D;
+    border-radius: 5px;
+    padding: 3px 5px;
+}
+
+.firstfontBox select {
+    background: transparent;
+    font-size: 13px;
+    padding: 2px;
+    color: #ddd;
+    outline: 0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.firstfontBox select option {
+    background-color: #4D4D4D;
+}
+
+.fontColor {
+    font-size: 18px;
+    height: 100%;
+    padding: 0 5px;
+}
+.fontColor::after{
+    content: "";
+}

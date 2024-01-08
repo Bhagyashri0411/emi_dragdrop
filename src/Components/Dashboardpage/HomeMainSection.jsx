@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import './Home.css';
 import GridComponent from "./GridComponent/GridComponent";
 import BoxComponent from "./BoxComponent/BoxComponent";
+import DonutChart from "../CommonComponents/Charts/DonutChart";
+import DonutApp from "../DonutApp";
 
 const HomeMainSection = React.memo((props) => {
 
@@ -45,6 +47,7 @@ const HomeMainSection = React.memo((props) => {
                     {props.gridsBlock.length !== 0 &&
                         <GridComponent {...props} setOffset={setOffset} setDragging={setDragging} />
                     }
+                    {props.graph && <DonutApp />}
                 </div>
             </div>
         </div>
