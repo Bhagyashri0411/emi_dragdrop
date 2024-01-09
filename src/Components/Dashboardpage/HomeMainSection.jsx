@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import './Home.css';
 import GridComponent from "./GridComponent/GridComponent";
 import BoxComponent from "./BoxComponent/BoxComponent";
-import DonutChart from "../CommonComponents/Charts/DonutChart";
-import DonutApp from "../DonutApp";
+import DonutApp from "../CommonComponents/Charts/DonutApp";
 
 const HomeMainSection = React.memo((props) => {
 
