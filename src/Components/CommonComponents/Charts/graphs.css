@@ -48,3 +48,16 @@
     font-size: 18px;
     margin: 0;
 }
+
+.donut>div:first-child {
+    height: 180px !important;
+}
+
+.canvasjs-chart-axis-title {
+    fill: red;
+    /* Change the color to your desired color */
+}
+
+/* .canvasjs-chart-canvas{
+    width: 180px !important;
+} */

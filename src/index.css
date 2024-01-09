@@ -71,10 +71,10 @@ img{
 }
 
 /* Graph */
-.canvasjs-chart-canvas{
+/* .canvasjs-chart-canvas{
   height: 250px !important;
   width: 200px !important;
-}
+} */
 .canvasjs-chart-credit{
   display: none !important;
 }

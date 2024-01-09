@@ -7,6 +7,7 @@ import {
 } from "mdb-react-ui-kit";
 import MakeDounghnutWithUrl from './MakeDounghnutWithUrl';
 import RandomNumberGenerator from '../../../CommonComponents/RandomNumberGenerator';
+import barline from "../../../../images/barline.png"
 
 export default function AddGraphType(props) {
     const [labelName, setLabelName] = React.useState('');
@@ -68,6 +69,26 @@ export default function AddGraphType(props) {
     const handleOpenTable = (e) => {
         setOpenTable(e)
     }
+
+    const handleAddChart = (type) => {
+        const updatedItems = props.gridsBlock.map((item) => {
+            if (item.mainid === props.selectedGrid[1]) {
+                const selectedItemId = props.selectedGrid[0];
+                const updatedItems = item.items.map((innerItem) => {
+                    if (innerItem.id === selectedItemId) {
+                        return { ...innerItem, [`addGraph${type}`]: [] };
+                    }
+                    return innerItem;
+                });
+                return { ...item, items: updatedItems };
+            }
+            return item;
+        });
+        
+        props.setGridsBlock(updatedItems);
+    };
+
+
     return (
         <div>
             <div className='px-3 mt-1'>
@@ -124,10 +145,15 @@ export default function AddGraphType(props) {
                         </div>
 
                         <div className='mt-3'>
-                        <img src='https://static.infragistics.com/marketing/Website/products/wpf/control-images/charts/doughnut/wpf-doughnut-chart-main.png?v=201802210900' alt='broken' />
-                            <img src='http://intellspot.com/wp-content/uploads/2017/12/line-chart-example.png' alt='broken' />
+                            <div onClick={() => handleAddChart("barline")}>
+                                <img src={barline} alt='broken' />
+                            </div>
+                            <div onClick={() => handleAddChart("doughnut")}>
+                                <img src='https://static.infragistics.com/marketing/Website/products/wpf/control-images/charts/doughnut/wpf-doughnut-chart-main.png?v=201802210900' alt='broken' />
+                            </div>
+                            {/* <img src='http://intellspot.com/wp-content/uploads/2017/12/line-chart-example.png' alt='broken' />
                             <img src='http://intellspot.com/wp-content/uploads/2017/12/bar-chart-example.png' alt="broken" />
-                        <img src='http://intellspot.com/wp-content/uploads/2017/12/Pie-chart-example.png' alt='broken' />
+                            <img src='http://intellspot.com/wp-content/uploads/2017/12/Pie-chart-example.png' alt='broken' /> */}
                         </div>
                     </MDBCardBody>
                 </>

@@ -2,6 +2,8 @@ import React from 'react';
 import { BorderSection, MarginSection, BackgroundSection } from '../../CommonComponents/StyleSection/StyleSection';
 import PieChartComponent from '../../CommonComponents/Charts/PieChartComponent';
 import CardBody, { TableInCardBody } from './CardBody';
+import BarAndLineChart from '../../CommonComponents/Charts/BarAndLineChart';
+import DonutApp from '../../CommonComponents/Charts/DonutApp';
 
 
 function GridComponent(props) {
@@ -16,7 +18,7 @@ function GridComponent(props) {
                         style={{
                             gridTemplateColumns: gridBlock.styles.gridColumn.join(' '),
                             gap: gridBlock.styles.gap,
-                            height: `${gridBlock.styles.height[0]}${gridBlock.styles.height[1]}`,
+                            // height: `${gridBlock.styles.height[0]}${gridBlock.styles.height[1]}`,
                             ...MarginSection({ marginValues: gridBlock.styles.margin }),
                         }}
                     >
@@ -46,7 +48,8 @@ function GridComponent(props) {
                                             item.tableData && <TableInCardBody data={item.tableData} />
                                         }
                                         {item.addedDoughnutsData && <PieChartComponent {...props} item={item} gridBlock={gridBlock} data={item.addedDoughnutsData} />}
-
+                                        {item.addGraphdoughnut && <DonutApp />}
+                                        {item.addGraphbarline && <BarAndLineChart />}
                                     </div>
                                 );
                             })
