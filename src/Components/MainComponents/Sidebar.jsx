@@ -1,14 +1,10 @@
 import React from "react";
-import IconButton from '@mui/material/IconButton';
-
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
 import CodeIcon from '@mui/icons-material/Code';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
-
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useState } from "react";
 
 
@@ -39,20 +35,16 @@ const Sidebar = React.memo(({ open, handleFun, handleAddBox, ...props }) => {
             <div className="topsider">
 
                 <div className="mainSidebar">
-
-
-                    {/* <div className="sidebarheader img mt-4" >
-                        <img
-                            src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                            alt=""
-                            style={{ width: '40px', height: '40px' }}
-                            className="rounded-circle"
-                        />
-                        <span className={`text ${open ? "d-inline ms-3" : "d-none"}`}>Chet Faker</span>
-                    </div>
-
-                    <hr className="" style={{ borderColor: 'white' }} /> */}
                     <ul className="uistyle">
+                        <li className={`listyle mt-3 ${clickedDiv === 'div0' ? 'checked' : ''}`}
+                            onClick={() => handleDivClick('div0')}>
+
+                            <div className="lifirstDiv" onClick={props.handleAddHeader}>
+                                <div className="liIcon" >
+                                    <DashboardIcon />
+                                </div>
+                            </div>
+                        </li>
                         <li className={`listyle mt-3 ${clickedDiv === 'div1' ? 'checked' : ''}`}
                             onClick={() => handleDivClick('div1')}>
 
@@ -60,11 +52,6 @@ const Sidebar = React.memo(({ open, handleFun, handleAddBox, ...props }) => {
                                 <div className="liIcon" >
                                     <CodeIcon />
                                 </div>
-                                {/* <div className={`litext ${open ? "d-flex" : "d-none"}`}>
-                                    <h6 className="h6">
-                                        Cards
-                                    </h6>
-                                </div> */}
                             </div>
                         </li>
 
@@ -72,16 +59,10 @@ const Sidebar = React.memo(({ open, handleFun, handleAddBox, ...props }) => {
                         <li className={`listyle mt-3 ${clickedDiv === 'div2' ? 'checked' : ''}`}
                             onClick={() => handleDivClick('div2')}
                         >
-
                             <div className="lifirstDiv" onClick={handleClick}>
                                 <div className="liIcon" >
                                     <AppsOutlinedIcon />
                                 </div>
-                                {/* <div className={`litext ${open ? "d-flex" : "d-none"}`}>
-                                    <h6 className="h6">
-                                        Grids
-                                    </h6>
-                                </div> */}
                             </div>
                             <Menu
                                 anchorEl={menuEl}
