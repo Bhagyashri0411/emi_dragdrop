@@ -89,8 +89,8 @@ const Main = () => {
                 width: 8, height: 5
             },
             items: [
-                { label: 'Home', icon: "", type:"text", border: [false, false] },
-                { label: 'About', icon: "", type:"text", border: [false, false] },
+                { id: RandomNumberGenerator(), label: 'Home', icon: "fa fa-home", type: true, border: [false, false] },
+                { id: RandomNumberGenerator(), label: 'About', icon: "fa fa-user", type: true, border: [false, false] },
             ],
         }
         setHeaderInfo(header);

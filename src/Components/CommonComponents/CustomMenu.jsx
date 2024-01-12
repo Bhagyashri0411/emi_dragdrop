@@ -5,7 +5,7 @@ const CustomMenu = ({ anchorEl, onClose, onMouseLeave, contentComponent, compone
     const ContentComponent = contentComponent;
 
     return (
-        <Menu
+        <Menu className='w-25'
             anchorEl={anchorEl}
             id="account-menu"
             open={Boolean(anchorEl)}

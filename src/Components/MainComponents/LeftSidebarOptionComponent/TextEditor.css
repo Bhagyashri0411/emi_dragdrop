@@ -1,0 +1,45 @@
+
+/* text editor */
+.texteditor {
+    padding: 10px;
+  }
+  
+  /* Icon Picker */
+  .icon-picker-list {
+    height: 100px;
+    overflow: auto;
+  }
+  
+  .icon-picker-list li {
+    padding: 0.25rem;
+  }
+  
+  .icon-picker-list a {
+    display: inline-flex;
+    min-height: 30px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 6px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .selected-icon {
+    color: #fff !important;
+    background-color: #556ee6;
+  }
+  
+  .icon-picker-list a:not(.selected-icon):hover {
+    background-color: #009E49;
+    color: #fff !important;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .icon-picker-list .fa {
+    font-size: 15px;
+  }

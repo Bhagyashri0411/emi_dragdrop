@@ -46,7 +46,7 @@ const Header = (props) => {
     width: `${com.width}rem`,
     height: `${com.height}rem`,
   });
-  
+
   const applyStyleItems = (border) => ({
     borderLeft: border[0] ? '2px solid' : 'none',
     borderRight: border[1] ? '2px solid' : 'none',
@@ -66,7 +66,7 @@ const Header = (props) => {
       <nav
         className={`header ${props.selectedHeader === props.headerInfo.id && "selected"}`}
         style={{ backgroundColor: com.bgColor, color: com.color }}
-        onClick={(e) => { e.stopPropagation(); props.setSelectedHeader(props.headerInfo.id)}}
+        onClick={(e) => { e.stopPropagation(); props.setSelectedHeader(props.headerInfo.id) }}
         onMouseEnter={handleMenu(setMenuEMainHeader)}
       >
         <Menu
@@ -143,8 +143,14 @@ const Header = (props) => {
                   }}
                 >
                   {props.headerInfo.items.map((item, index) => (
-                    <div key={index}  style={applyStyleItems(item.border)}>
-                      <li>{item.label}</li>
+                    <div key={index} style={applyStyleItems(item.border)}>
+                      <li>
+                        {item.type ?
+                          item.label
+                          :
+                          <span className={item.icon}></span>
+                        }
+                      </li>
                     </div>
                   ))}
                   <CustomMenu
