@@ -1,5 +1,9 @@
-import { MDBBtn } from 'mdb-react-ui-kit';
 import React, { useState } from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import RandomNumberGenerator from '../../CommonComponents/RandomNumberGenerator';
+import "./TextEditor.css"
+import icons from "../../CommonComponents/Icon.json";
+import SearchIcon from '@mui/icons-material/Search';
 
 export const HeaderEditors = ({ headerInfo, setHeaderInfo }) => {
     const handleChangesOnHeader = (e, property) => {
@@ -79,47 +83,83 @@ export const HeaderEditors = ({ headerInfo, setHeaderInfo }) => {
 
 export const ItemsEditors = ({ headerInfo, setHeaderInfo }) => {
 
+    const updatedItems = [...headerInfo.items];
     const addItem = () => {
-        const newItems = [...headerInfo.items, { label: 'New Item', icon: '', border: [false, false] }];
+        const newItems = [...headerInfo.items, { id: RandomNumberGenerator(), label: 'New Item', icon: '', border: [false, false] }];
         setHeaderInfo({ ...headerInfo, items: newItems });
     };
 
-    const updateItemLabel = (index, name) => {
-        const updatedItems = [...headerInfo.items];
-        updatedItems[index].label = name;
+    const updateItems = (index, val) => {
+        updatedItems[index].label = val;
         setHeaderInfo({ ...headerInfo, items: updatedItems });
     };
     const addBorder = (index, place) => {
-        const updatedItems = [...headerInfo.items];
         updatedItems[index].border[place] = !updatedItems[index].border[place];
         setHeaderInfo({ ...headerInfo, items: updatedItems });
     }
+    const updateItemsType = (index) => {
+        updatedItems[index].type = !updatedItems[index].type;
+        setHeaderInfo({ ...headerInfo, items: updatedItems });
+    }
+
+    function handleOnDragEnd(result) {
+        if (!result.destination) return;
+        const updatedItems = Array.from(headerInfo.items);
+        const [draggedItem] = updatedItems.splice(result.source.index, 1);
+        updatedItems.splice(result.destination.index, 0, draggedItem);
+        setHeaderInfo({ ...headerInfo, items: updatedItems });
+    };
+
     return (
         <>
+            <DragDropContext onDragEnd={handleOnDragEnd}>
+                <Droppable droppableId="boxes">
+                    {(provided) => (
+                        <ul ref={provided.innerRef} {...provided.droppableProps}>
+                            {headerInfo.items.map((item, index) =>
+                                <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
+                                    {(provided) => (
+                                        <div className='p-2 border border-black' key={index} style={{ marginBottom: '10px' }}
+                                            ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}
+                                        >
+                                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                <button className='me-2' onClick={() => updateItemsType(index)}>
+                                                    {item.type ? "Add " : "Remove "}
+                                                    Icon
+                                                </button>
+                                                {item.type &&
+                                                    <input
+                                                        type="text"
+                                                        value={item.label}
+                                                        onChange={(e) => {
+                                                            updateItems(index, e.target.value);
+                                                        }}
+                                                        style={{ marginRight: '10px' }}
+                                                    />
+                                                }
+                                            </div>
+                                            <button className='ms-2' onClick={() => addBorder(index, "0")}>
+                                                {item.border[0] ? "Remove " : "Add "}
+                                                Left
+                                            </button>
+                                            <button className='ms-2' onClick={() => addBorder(index, "1")}>
+                                                {item.border[1] ? "Remove " : "Add "}
+                                                RIght</button>
 
-            <div className='p-3'>
-                {headerInfo.items.map((item, index) => (
-                    <div key={index} style={{ marginBottom: '10px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <input
-                                type="text"
-                                value={item.label}
-                                onChange={(e) => updateItemLabel(index, e.target.value,)}
-                                style={{ marginRight: '10px' }}
-                            />
-                        </div>
-                        <button className='ms-2' onClick={() => addBorder(index, "0")}>
-                            {item.border[0] ? "Remove " : "Add "}
-                            Left
-                        </button>
-                        <button className='ms-2' onClick={() => addBorder(index, "1")}>
-                            {item.border[1] ? "Remove " : "Add "}
-
-                            RIght</button>
-                    </div>
-                ))}
-                <button onClick={addItem}>Add Item</button>
-            </div>
+                                            {!item.type &&
+                                                <div>
+                                                    <IconPicker index={index} iconName={item.icon} headerInfo={headerInfo} setHeaderInfo={setHeaderInfo} />
+                                                </div>
+                                            }
+                                        </div>
+                                    )}
+                                </Draggable>
+                            )}
+                            {provided.placeholder}
+                        </ul>
+                    )}
+                </Droppable>
+            </DragDropContext>
         </>
     )
 }
@@ -234,6 +274,62 @@ const TextEditor = ({ headerInfo, setHeaderInfo }) => {
                     />
                 </div>
             </>}
+
+        </div>
+    );
+};
+
+
+export const IconPicker = ({ iconName, setHeaderInfo, headerInfo, index }) => {
+
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredIcons, setFilteredIcons] = useState(icons);
+
+    const changeIcon =(e)=>{
+        const updatedItems = [...headerInfo.items];
+        updatedItems[index].icon = e;
+        setHeaderInfo({ ...headerInfo, items: updatedItems });
+    }
+ 
+    
+    const handleSearchChange = (event) => {
+        const query = event.target.value.toLowerCase();
+        setSearchQuery(query);
+
+        const filtered = icons.filter((icon) =>
+            icon.icon.toLowerCase().includes(query)
+        );
+        setFilteredIcons(filtered);
+    };
+
+    return (
+        <div>
+            <div className="secondDiv">
+                <div className="serach">
+                    <div className="serachdivefirst">
+                        <div className={'inputbox inputBoxFocus '}>
+                            <input className="" placeholder="Search..." type="text" defaultValue
+                                value={searchQuery}
+                                onChange={handleSearchChange}
+                            />
+                        </div>
+                        <div className="box ">
+                            <SearchIcon className='icon' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul className="icon-picker-list row">
+                {filteredIcons.map((icon, index) => (
+                    <li key={index} className="col-md-2" >
+                        <a className={icon.icon === iconName && "selected-icon"}
+                            onClick={() => changeIcon(icon.icon)}
+                        >
+                            <span className={icon.icon}></span>
+                        </a>
+                    </li>
+                ))}
+            </ul>
 
         </div>
     );
