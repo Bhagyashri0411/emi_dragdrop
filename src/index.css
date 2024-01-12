@@ -40,8 +40,14 @@ a:visited {
   text-decoration: none !important;
 }
 
-img{
+img {
   max-width: 100%;
+}
+
+ul {
+  list-style: none;
+  padding:0  5px !important;
+  margin: 0 !important;
 }
 
 .card {
@@ -75,6 +81,6 @@ img{
   height: 250px !important;
   width: 200px !important;
 } */
-.canvasjs-chart-credit{
+.canvasjs-chart-credit {
   display: none !important;
 }

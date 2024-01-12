@@ -303,10 +303,15 @@
 
 /* style component css */
 
-.stylecomponet .subheading{
-  padding:  10px 0;
+.stylecomponet .subheading {
+  padding: 10px 0;
 }
 
-.tabes .nav-item .nav-link{
+.tabes .nav-item .nav-link {
+  padding: 10px;
+}
+
+/* text editor */
+.texteditor {
   padding: 10px;
 }

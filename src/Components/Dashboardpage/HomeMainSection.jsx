@@ -3,6 +3,7 @@ import './Home.css';
 import GridComponent from "./GridComponent/GridComponent";
 import BoxComponent from "./BoxComponent/BoxComponent";
 import DonutApp from "../CommonComponents/Charts/DonutApp";
+import Header from "./Header";
 
 const HomeMainSection = React.memo((props) => {
 
@@ -27,18 +28,21 @@ const HomeMainSection = React.memo((props) => {
         props.setSelectedBox(null);
         props.setSelectedGrid(["", ""])
         props.setSelectedText(["", "", "", null]);
+        props.setSelectedHeader(null);
     };
 
     const data = props.propertyPage;
-
     return (
         <div className='containerbox' id='code' onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
             <div className="col-md-12">
-                <div className="homecard py-1"
+                <div className="homecard"
                     style={{
                         backgroundColor: data?.string.bg,
                     }}
                 >
+                    {Object.keys(props.headerInfo).length !== 0 &&
+                        <Header {...props} />
+                    }
                     {props.setBoxes.length !== 0 &&
                         <BoxComponent {...props} setOffset={setOffset} setDragging={setDragging} />
                     }

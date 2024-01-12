@@ -18,12 +18,15 @@ const Main = () => {
     const [graph, setGraph] = useState(false);
     // main page style
     const [propertyPage, setPropertyPage] = React.useState();
+    // set for header component
+    const [headerInfo, setHeaderInfo] = useState({})
 
     // Selection
     const [selectedBox, setSelectedBox] = useState(null);
     const [selectedGrid, setSelectedGrid] = useState(["", ""]);
     const [selectedText, setSelectedText] = useState(["", "", "", null]);
-
+    // select header
+    const [selectedHeader, setSelectedHeader] = useState(null)
 
     // Add Card
     const handleAddBox = () => {
@@ -72,16 +75,38 @@ const Main = () => {
 
     };
 
-    const [isTrue, setIsTrue] = useState(false);
+    // function to add header
+    const handleAddHeader = () => {
+        const header = {
+            id: RandomNumberGenerator(),
+            mainHeader: 'Welcome!',
+            size: 12,
+            logo: "",
+            type: "text",
+            styles: {
+                bgColor: '#3498db', color: "#ffffff", padding: [10, 10],
+                fontSize: 18, fontWeight: 500,
+                width: 8, height: 5
+            },
+            items: [
+                { label: 'Home', icon: "", type:"text", border: [false, false] },
+                { label: 'About', icon: "", type:"text", border: [false, false] },
+            ],
+        }
+        setHeaderInfo(header);
+    }
+
+
+    // Third bar
+    const [isTrue, setIsTrue] = useState(true);
 
     const toggleValue = () => {
         setIsTrue((prevValue) => !prevValue);
     };
 
-    const handleAddDounghut =()=>{
+    const handleAddDounghut = () => {
         setGraph(true);
     }
- 
 
     return (
         <>
@@ -92,10 +117,12 @@ const Main = () => {
                             <Sidebar
                                 handleAddBox={handleAddBox}
                                 handleAddGrid={handleAddGrid}
-                                handleAddDounghut = {handleAddDounghut}
+                                handleAddDounghut={handleAddDounghut}
                                 setSelectedBox={setSelectedBox}
                                 setSelectedGrid={setSelectedGrid}
-                                
+
+                                // Header function
+                                handleAddHeader={handleAddHeader}
                             />
                         </div>
                         <div className='secondColumn' style={{ width: '100%' }}>
@@ -117,7 +144,13 @@ const Main = () => {
                                     selectedText={selectedText}
                                     setSelectedText={setSelectedText}
                                     // graph
-                                    graph ={graph}
+                                    graph={graph}
+
+                                    // Header
+                                    setHeaderInfo={setHeaderInfo}
+                                    headerInfo={headerInfo}
+                                    selectedHeader={selectedHeader}
+                                    setSelectedHeader={setSelectedHeader}
                                 />
                             </div>
 
