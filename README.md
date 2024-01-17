@@ -4,7 +4,7 @@
 ### How to Install packages
 
 ```bash
-npm install
+npm install --legacy-peer-deeps
 ```
 
 ### How to Run locally
