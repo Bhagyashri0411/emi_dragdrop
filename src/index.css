@@ -1,6 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@1,700&display=swap'); */
-
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 *,
 ::before,
@@ -8,6 +6,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: inherit;
+  font-family: 'Poppins', sans-serif;
 }
 
 :root {
@@ -25,6 +24,116 @@
   --border: #ddd;
   --lightgray: #e3e3e3;
 }
+
+:root {
+  --puck-color-rose-01: #4a001c;
+  --puck-color-rose-02: #670833;
+  --puck-color-rose-03: #87114c;
+  --puck-color-rose-04: #a81a66;
+  --puck-color-rose-05: #bc5089;
+  --puck-color-rose-06: #cc7ca5;
+  --puck-color-rose-07: #d89aba;
+  --puck-color-rose-08: #e3b8cf;
+  --puck-color-rose-09: #efd6e3;
+  --puck-color-rose-10: #f6eaf1;
+  --puck-color-rose-11: #faf4f8;
+  --puck-color-rose-12: #fef8fc;
+  --puck-color-azure-01: #00175d;
+  --puck-color-azure-02: #002c77;
+  --puck-color-azure-03: #014292;
+  --puck-color-azure-04: #0158ad;
+  --puck-color-azure-05: #3479be;
+  --puck-color-azure-06: #6499cf;
+  --puck-color-azure-07: #88b0da;
+  --puck-color-azure-08: #abc7e5;
+  --puck-color-azure-09: #cfdff0;
+  --puck-color-azure-10: #e7eef7;
+  --puck-color-azure-11: #f3f6fb;
+  --puck-color-azure-12: #f7faff;
+  --puck-color-green-01: #002000;
+  --puck-color-green-02: #043604;
+  --puck-color-green-03: #084e08;
+  --puck-color-green-04: #0c680c;
+  --puck-color-green-05: #1d882f;
+  --puck-color-green-06: #2faa53;
+  --puck-color-green-07: #56c16f;
+  --puck-color-green-08: #7dd78b;
+  --puck-color-green-09: #b8e8bf;
+  --puck-color-green-10: #ddf3e0;
+  --puck-color-green-11: #eff8f0;
+  --puck-color-green-12: #f3fcf4;
+  --puck-color-yellow-01: #211000;
+  --puck-color-yellow-02: #362700;
+  --puck-color-yellow-03: #4c4000;
+  --puck-color-yellow-04: #645a00;
+  --puck-color-yellow-05: #877614;
+  --puck-color-yellow-06: #ab9429;
+  --puck-color-yellow-07: #bfac4e;
+  --puck-color-yellow-08: #d4c474;
+  --puck-color-yellow-09: #e6deb1;
+  --puck-color-yellow-10: #f3efd9;
+  --puck-color-yellow-11: #f9f7ed;
+  --puck-color-yellow-12: #fcfaf0;
+  --puck-color-red-01: #4c0000;
+  --puck-color-red-02: #6a0a10;
+  --puck-color-red-03: #8a1422;
+  --puck-color-red-04: #ac1f35;
+  --puck-color-red-05: #bf5366;
+  --puck-color-red-06: #ce7e8e;
+  --puck-color-red-07: #d99ca8;
+  --puck-color-red-08: #e4b9c2;
+  --puck-color-red-09: #efd7db;
+  --puck-color-red-10: #f6eaec;
+  --puck-color-red-11: #faf4f5;
+  --puck-color-red-12: #fff9fa;
+  --puck-color-grey-01: #181818;
+  --puck-color-grey-02: #292929;
+  --puck-color-grey-03: #404040;
+  --puck-color-grey-04: #5a5a5a;
+  --puck-color-grey-05: #767676;
+  --puck-color-grey-06: #949494;
+  --puck-color-grey-07: #ababab;
+  --puck-color-grey-08: #c3c3c3;
+  --puck-color-grey-09: #dcdcdc;
+  --puck-color-grey-10: #efefef;
+  --puck-color-grey-11: #f5f5f5;
+  --puck-color-grey-12: #fafafa;
+  --puck-color-black: #000;
+  --puck-color-white: #fff;
+  --puck-font-size-scale-base-unitless: 12;
+  --puck-font-size-xxxs-unitless: 12;
+  --puck-font-size-xxs-unitless: 14;
+  --puck-font-size-xs-unitless: 16;
+  --puck-font-size-s-unitless: 18;
+  --puck-font-size-m-unitless: 21;
+  --puck-font-size-l-unitless: 24;
+  --puck-font-size-xl-unitless: 28;
+  --puck-font-size-xxl-unitless: 36;
+  --puck-font-size-xxxl-unitless: 48;
+  --puck-font-size-xxxxl-unitless: 56;
+  --puck-font-size-xxxs: calc(1rem * var(--puck-font-size-xxxs-unitless) / 16);
+  --puck-font-size-xxs: calc(1rem * var(--puck-font-size-xxs-unitless) / 16);
+  --puck-font-size-xs: calc(1rem * var(--puck-font-size-xs-unitless) / 16);
+  --puck-font-size-s: calc(1rem * var(--puck-font-size-s-unitless) / 16);
+  --puck-font-size-m: calc(1rem * var(--puck-font-size-m-unitless) / 16);
+  --puck-font-size-l: calc(1rem * var(--puck-font-size-l-unitless) / 16);
+  --puck-font-size-xl: calc(1rem * var(--puck-font-size-xl-unitless) / 16);
+  --puck-font-size-xxl: calc(1rem * var(--puck-font-size-xxl-unitless) / 16);
+  --puck-font-size-xxxl: calc(1rem * var(--puck-font-size-xxxl-unitless) / 16);
+  --puck-font-size-xxxxl: calc(1rem * var(--puck-font-size-xxxxl-unitless) / 16);
+  --puck-font-size-base: var(--puck-font-size-xs);
+  --line-height-reset: 1;
+  --line-height-xs: calc(var(--space-m-unitless) / var(--puck-font-size-m-unitless));
+  --line-height-s: calc(var(--space-m-unitless) / var(--puck-font-size-s-unitless));
+  --line-height-m: calc(var(--space-m-unitless) / var(--puck-font-size-xs-unitless));
+  --line-height-l: calc(var(--space-m-unitless) / var(--puck-font-size-xxs-unitless));
+  --line-height-xl: calc(var(--space-m-unitless) / var(--puck-font-size-scale-base-unitless));
+  --line-height-base: var(--line-height-m);
+  --fallback-font-stack: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  --puck-font-family: Inter, var(--fallback-font-stack);
+  --puck-font-family-monospaced: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace
+}
+
 
 body {
   margin: 0px;
@@ -46,7 +155,7 @@ img {
 
 ul {
   list-style: none;
-  padding:0  5px !important;
+  padding: 0 5px !important;
   margin: 0 !important;
 }
 
@@ -54,51 +163,4 @@ ul {
   border-radius: 12px;
   box-shadow: 0 6px 10px -4px rgba(0, 0, 0, .15);
   background-color: #fff;
-}
-
-.box-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.box {
-  width: 100%;
-  height: 100%;
-}
-
-.draggable-text {
-  position: absolute;
-  color: #fff;
-  padding: 2px;
-  cursor: pointer;
-  user-select: none;
-}
-
-/* Graph */
-/* .canvasjs-chart-canvas{
-  height: 250px !important;
-  width: 200px !important;
-} */
-.canvasjs-chart-credit {
-  display: none !important;
-}
-ul {
-  list-style: none;
-  padding-left: 5px;
-}
-
-.box {
-  width: 200px;
-  height: 50px;
-  margin-bottom: 5px;
-}
-
-.red {
-  background: red;
-}
-
-.green {
-  background: green;
 }

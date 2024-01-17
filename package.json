@@ -26,6 +26,7 @@
     "final-form": "^4.20.6",
     "final-form-arrays": "3.0.2",
     "get-google-fonts": "^1.2.2",
+    "lucide-react": "^0.311.0",
     "mdb-react-ui-kit": "^6.1.0",
     "mdb-ui-kit": "^6.4.0",
     "react": "^18.2.0",

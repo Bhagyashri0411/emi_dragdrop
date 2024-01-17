@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import './Home.css';
-import GridComponent from "./GridComponent/GridComponent";
-import BoxComponent from "./BoxComponent/BoxComponent";
-import DonutApp from "../CommonComponents/Charts/DonutApp";
 import Header from "./Header";
 
 const HomeMainSection = React.memo((props) => {
@@ -25,9 +22,6 @@ const HomeMainSection = React.memo((props) => {
 
     const handleMouseUp = () => {
         setDragging(false);
-        props.setSelectedBox(null);
-        props.setSelectedGrid(["", ""])
-        props.setSelectedText(["", "", "", null]);
         props.setSelectedHeader(null);
     };
 
@@ -43,14 +37,7 @@ const HomeMainSection = React.memo((props) => {
                     {Object.keys(props.headerInfo).length !== 0 &&
                         <Header {...props} />
                     }
-                    {props.setBoxes.length !== 0 &&
-                        <BoxComponent {...props} setOffset={setOffset} setDragging={setDragging} />
-                    }
 
-                    {props.gridsBlock.length !== 0 &&
-                        <GridComponent {...props} setOffset={setOffset} setDragging={setDragging} />
-                    }
-                    {props.graph && <DonutApp />}
                 </div>
             </div>
         </div>
