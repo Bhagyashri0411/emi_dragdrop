@@ -164,3 +164,8 @@ ul {
   box-shadow: 0 6px 10px -4px rgba(0, 0, 0, .15);
   background-color: #fff;
 }
+
+svg {
+  width: 16px;
+  height: 16px;
+}

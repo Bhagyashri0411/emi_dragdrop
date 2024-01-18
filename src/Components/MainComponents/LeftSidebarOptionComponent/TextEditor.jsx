@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import RandomNumberGenerator from '../../CommonComponents/RandomNumberGenerator';
 import "./TextEditor.css"
-import icons from "../../CommonComponents/Icon.json";
+// import icons from "../../CommonComponents/Iconlists";
 import SearchIcon from '@mui/icons-material/Search';
 
 export const HeaderEditors = ({ headerInfo, setHeaderInfo }) => {
@@ -148,7 +148,7 @@ export const ItemsEditors = ({ headerInfo, setHeaderInfo }) => {
 
                                             {!item.type &&
                                                 <div>
-                                                    <IconPicker index={index} iconName={item.icon} headerInfo={headerInfo} setHeaderInfo={setHeaderInfo} />
+                                                    {/* <IconPicker index={index} iconName={item.icon} headerInfo={headerInfo} setHeaderInfo={setHeaderInfo} /> */}
                                                 </div>
                                             }
                                         </div>
@@ -280,59 +280,59 @@ const TextEditor = ({ headerInfo, setHeaderInfo }) => {
 };
 
 
-export const IconPicker = ({ iconName, setHeaderInfo, headerInfo, index }) => {
+// export const IconPicker = ({ iconName, setHeaderInfo, headerInfo, index }) => {
 
-    const [searchQuery, setSearchQuery] = useState('');
-    const [filteredIcons, setFilteredIcons] = useState(icons);
+//     const [searchQuery, setSearchQuery] = useState('');
+//     const [filteredIcons, setFilteredIcons] = useState(icons);
 
-    const changeIcon =(e)=>{
-        const updatedItems = [...headerInfo.items];
-        updatedItems[index].icon = e;
-        setHeaderInfo({ ...headerInfo, items: updatedItems });
-    }
+//     const changeIcon =(e)=>{
+//         const updatedItems = [...headerInfo.items];
+//         updatedItems[index].icon = e;
+//         setHeaderInfo({ ...headerInfo, items: updatedItems });
+//     }
  
     
-    const handleSearchChange = (event) => {
-        const query = event.target.value.toLowerCase();
-        setSearchQuery(query);
+//     const handleSearchChange = (event) => {
+//         const query = event.target.value.toLowerCase();
+//         setSearchQuery(query);
 
-        const filtered = icons.filter((icon) =>
-            icon.icon.toLowerCase().includes(query)
-        );
-        setFilteredIcons(filtered);
-    };
+//         const filtered = icons.filter((icon) =>
+//             icon.icon.toLowerCase().includes(query)
+//         );
+//         setFilteredIcons(filtered);
+//     };
 
-    return (
-        <div>
-            <div className="secondDiv">
-                <div className="serach">
-                    <div className="serachdivefirst">
-                        <div className={'inputbox inputBoxFocus '}>
-                            <input className="" placeholder="Search..." type="text" defaultValue
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                            />
-                        </div>
-                        <div className="box ">
-                            <SearchIcon className='icon' />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <ul className="icon-picker-list row">
-                {filteredIcons.map((icon, index) => (
-                    <li key={index} className="col-md-2" >
-                        <a className={icon.icon === iconName && "selected-icon"}
-                            onClick={() => changeIcon(icon.icon)}
-                        >
-                            <span className={icon.icon}></span>
-                        </a>
-                    </li>
-                ))}
-            </ul>
+//     return (
+//         <div>
+//             <div className="secondDiv">
+//                 <div className="serach">
+//                     <div className="serachdivefirst">
+//                         <div className={'inputbox inputBoxFocus '}>
+//                             <input className="" placeholder="Search..." type="text" defaultValue
+//                                 value={searchQuery}
+//                                 onChange={handleSearchChange}
+//                             />
+//                         </div>
+//                         <div className="box ">
+//                             <SearchIcon className='icon' />
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//             <ul className="icon-picker-list row">
+//                 {filteredIcons.map((icon, index) => (
+//                     <li key={index} className="col-md-2" >
+//                         <a className={icon.icon === iconName && "selected-icon"}
+//                             onClick={() => changeIcon(icon.icon)}
+//                         >
+//                             <span className={icon.icon}></span>
+//                         </a>
+//                     </li>
+//                 ))}
+//             </ul>
 
-        </div>
-    );
-};
+//         </div>
+//     );
+// };
 
 export default TextEditor;

@@ -69,7 +69,7 @@ const Header = (props) => {
         onClick={(e) => { e.stopPropagation(); props.setSelectedHeader(props.headerInfo.id) }}
         onMouseEnter={handleMenu(setMenuEMainHeader)}
       >
-        <Menu
+        {/* <Menu
           anchorEl={menuEMainHeader}
           id="account-menu"
           open={Boolean(menuEMainHeader)}
@@ -96,7 +96,7 @@ const Header = (props) => {
           anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
         >
           <HeaderEditors headerInfo={props.headerInfo} setHeaderInfo={props.setHeaderInfo} />
-        </Menu>
+        </Menu> */}
         <div className='row'>
           <div className={`col-md-${props.headerInfo.size} mx-auto`}>
             <div className='d-flex justify-content-between align-items-center'>
@@ -105,13 +105,13 @@ const Header = (props) => {
                   <h1 className='mb-0' style={applyStyles()} onMouseEnter={(e) => { e.stopPropagation(); handleOpenMenu(setMenuEl, e) }}>
                     {props.headerInfo.mainHeader}
                   </h1>
-                  <CustomMenu
+                  {/* <CustomMenu
                     anchorEl={menuEl}
                     onClose={handleCloseMenuWithState(setMenuEl)}
                     onMouseLeave={handleCloseMenuWithState(setMenuEl)}
                     contentComponent={TextEditor}
                     componentProps={{ headerInfo: props.headerInfo, setHeaderInfo: props.setHeaderInfo }}
-                  />
+                  /> */}
                 </>
               ) : (
                 <div>
@@ -123,24 +123,24 @@ const Header = (props) => {
                       onMouseEnter={(e) => { e.stopPropagation(); handleOpenMenu(setMenuElImage, e) }}
                     />
                   )}
-                  <CustomMenu
+                  {/* <CustomMenu
                     anchorEl={menuElImage}
                     onClose={handleCloseMenuWithState(setMenuElImage)}
                     onMouseLeave={handleCloseMenuWithState(setMenuElImage)}
                     contentComponent={TextEditor}
                     componentProps={{ headerInfo: props.headerInfo, setHeaderInfo: props.setHeaderInfo }}
-                  />
+                  /> */}
                 </div>
               )}
 
               <div>
                 <ul
                   className={`d-flex align-items-center ${props.selectedHeader === 5 && "selected"}`}
-                  onMouseEnter={(e) => {
-                    e.stopPropagation();
-                    props.setSelectedHeader(5);
-                    handleOpenMenu(setMenuEItems, e);
-                  }}
+                  // onMouseEnter={(e) => {
+                  //   e.stopPropagation();
+                  //   props.setSelectedHeader(5);
+                  //   handleOpenMenu(setMenuEItems, e);
+                  // }}
                 >
                   {props.headerInfo.items.map((item, index) => (
                     <div key={index} style={applyStyleItems(item.border)}>
@@ -148,18 +148,18 @@ const Header = (props) => {
                         {item.type ?
                           item.label
                           :
-                          <span className={item.icon}></span>
+                          item.icon
                         }
                       </li>
                     </div>
                   ))}
-                  <CustomMenu
+                  {/* <CustomMenu
                     anchorEl={menuEItems}
                     onClose={handleCloseMenuWithState(setMenuEItems)}
                     onMouseLeave={handleCloseMenuWithState(setMenuEItems)}
                     contentComponent={ItemsEditors}
                     componentProps={{ headerInfo: props.headerInfo, setHeaderInfo: props.setHeaderInfo }}
-                  />
+                  /> */}
                 </ul>
               </div>
             </div>
