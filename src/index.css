@@ -131,13 +131,15 @@
   --line-height-base: var(--line-height-m);
   --fallback-font-stack: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   --puck-font-family: Inter, var(--fallback-font-stack);
-  --puck-font-family-monospaced: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace
+  --puck-font-family-monospaced: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  --puck-side-bar-width: 290px;
+  --puck-frame-width: auto;
 }
 
 
 body {
   margin: 0px;
-  font-size: 1.25rem;
+  font-size: 0.9rem;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.625;
   background-color: var(--backgroundColor) !important;
@@ -147,6 +149,7 @@ a,
 a:link,
 a:visited {
   text-decoration: none !important;
+  color: inherit;
 }
 
 img {
@@ -155,7 +158,7 @@ img {
 
 ul {
   list-style: none;
-  padding: 0 5px !important;
+  padding: 0 !important;
   margin: 0 !important;
 }
 

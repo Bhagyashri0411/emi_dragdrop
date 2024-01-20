@@ -1,14 +1,9 @@
+import { Equal, PanelRightOpen } from "lucide-react";
 import React from "react";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
-import CodeIcon from '@mui/icons-material/Code';
-import DonutLargeIcon from '@mui/icons-material/DonutLarge';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useState } from "react";
 
 
-const Sidebar = React.memo(({ open, handleFun, handleAddBox, ...props }) => {
+const Sidebar = (props) => {
 
     const [clickedDiv, setClickedDiv] = useState(null);
 
@@ -19,7 +14,6 @@ const Sidebar = React.memo(({ open, handleFun, handleAddBox, ...props }) => {
 
     return (
         <>
-
             <div className="topsider">
 
                 <div className="mainSidebar">
@@ -27,9 +21,17 @@ const Sidebar = React.memo(({ open, handleFun, handleAddBox, ...props }) => {
                         <li className={`listyle mt-3 ${clickedDiv === 'div0' ? 'checked' : ''}`}
                             onClick={() => handleDivClick('div0')}>
 
-                            <div className="lifirstDiv" onClick={props.handleAddHeader}>
-                                <div className="liIcon" >
-                                    <DashboardIcon />
+                            <div className="lifirstDiv border" onClick={props.handleAddHeader}>
+                                <div className="liIcon text-white" >
+                                    <Equal />
+                                </div>
+                            </div>
+                        </li>
+                        <li className={`listyle mt-3 ${clickedDiv === 'div1' ? 'checked' : ''}`}
+                            onClick={() => handleDivClick('div1')}>
+                            <div className="lifirstDiv border" onClick={props.handleAddSidebarData}>
+                                <div className="liIcon text-white" >
+                                    <PanelRightOpen />
                                 </div>
                             </div>
                         </li>
@@ -39,6 +41,6 @@ const Sidebar = React.memo(({ open, handleFun, handleAddBox, ...props }) => {
 
         </>
     )
-})
+}
 
 export default Sidebar;

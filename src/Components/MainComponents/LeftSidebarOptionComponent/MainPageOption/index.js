@@ -1,66 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import DisabledByDefaultOutlinedIcon from '@mui/icons-material/DisabledByDefaultOutlined';
-import SquareIcon from '@mui/icons-material/Square';
+import React, { useState } from 'react';
+import ColorInput from '../../../CommonComponents/ColorInput';
+import { ChevronRight } from 'lucide-react';
 
 export default function MainPageOptionComponent(props) {
-    const [selectPage, setSelectPage] = useState(null);
-    const [openDiv, setOpenDiv] = useState(false);
-    const [bgColor, setBgColor] = useState("#222233");
 
-    useEffect(() => {
-        // Set initial background color
-        const property = {
-            id: Date.now(),
-            num: { margin: [10, 5], padding: [15, 2] },
-            string: { bg: bgColor },
-        }
-        props.setPropertyPage(property);
-    }, [bgColor]);
-
-    const handleEditBack = (e, id, name) => {
-        const updatePage = { ...props.propertyPage };
-        if (name === "empty") {
-            updatePage.string.bg = e;
-            setOpenDiv(false);
-            setBgColor(e);
-        } else if (name === "fill") {
-            setOpenDiv(true);
-        } else if (name === "fillbg") {
-            updatePage.string.bg = e.target.value;
-            setBgColor(e.target.value);
-        }
-
-        props.setPropertyPage(updatePage);
-        setSelectPage(id);
-    }
+    const handleEditBack = (e) => {
+        const updatedPage = [{
+            ...props.page[0], mainPageStyles: {
+                ...props.page[0].mainPageStyles,
+                bgColor: e.target.value
+            }
+        }];
+        props.setPage(updatedPage);
+    };
 
     return (
-        <div className='stylecomponet'>
-            <div className='blockflex'>
-                <h6>Background</h6>
-                <div className='block'>
-                    <div className={`boxbackground ${selectPage === 'div1' ? 'select' : ''}`}
-                        onClick={() => handleEditBack('transparent', 'div1', 'empty')}
-                    >
-                        <DisabledByDefaultOutlinedIcon />
+        <>
+            <div className="title">
+                <div className="breadcrumbs">
+                    <div className="breadcrumb">
+                        <button className="breadcrumbLabel">Page</button>
+                        <ChevronRight />
                     </div>
-                    <div className={`boxbackground ${selectPage === 'div2' ? 'select' : ''}`}
-                        onClick={() => handleEditBack("", 'div2', "fill")}
-                    >
-                        <SquareIcon />
+                    <div className="heading">
+                        <h2 className="Heading--xs">/</h2>
                     </div>
                 </div>
             </div>
 
-            {openDiv &&
-                <div className='blockflex'>
-                    <span>Color</span>
-                    <input type='color'
-                        value={bgColor}
-                        onChange={(e) => handleEditBack(e, '', 'fillbg')}
-                    />
-                </div>
-            }
-        </div>
-    )
+            <div className='blockflex mt-2'>
+                <h6>Background</h6>
+            </div>
+            <ColorInput bgval={props.page[0].mainPageStyles.bgColor} funOnchange={handleEditBack} />
+        </>
+    );
 }

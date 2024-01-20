@@ -54,7 +54,7 @@
     font-size: var(--puck-font-size-xs);
 }
 
-.PuckFields {
+.HeaderFields {
     position: relative;
     font-family: var(--puck-font-family);
 }
@@ -64,14 +64,14 @@
 .Input {
     border-top: 1px solid var(--puck-color-grey-09);
     color: var(--puck-color-grey-04);
-    padding: 16px 16px 12px;
+    padding: 10px 16px;
     display: block;
 }
 
 .Input-label {
     align-items: center;
     display: flex;
-    padding-bottom: 12px;
+    padding-bottom: 5px;
     font-size: var(--puck-font-size-xxs);
     font-weight: 600;
 }
@@ -98,20 +98,18 @@
     border-radius: 4px;
     font-family: inherit;
     font-size: 14px;
-    padding: 12px 15px;
+    padding: 5px 0px;
     transition: border-color 50ms ease-in;
     width: 100%;
 }
 
 .ItemBox {
     border-bottom: 0;
-    outline-offset: 0 !important;
-    outline: 1px solid var(--puck-color-azure-07) !important;
+    border: 1px solid var(--puck-color-azure-07) !important;
 }
 
 .ArrayFieldItem-summary {
-    background: var(--puck-color-azure-11);
-    color: var(--puck-color-azure-04);
+    color: var(--puck-color-grey-04);
     font-weight: 600;
     transition: none;
     cursor: pointer;
@@ -121,9 +119,16 @@
     justify-content: space-between;
     font-size: var(--puck-font-size-xxs);
     list-style: none;
-    padding: 12px 15px;
+    padding: 8px 15px;
     position: relative;
     overflow: hidden;
+}
+
+.ArrayFieldItem-summary.active {
+    background: var(--puck-color-azure-11);
+    color: var(--puck-color-azure-04);
+    font-weight: 600;
+    transition: none;
 }
 
 .ArrayFieldItem {
@@ -193,7 +198,7 @@
     cursor: pointer;
     width: 100%;
     margin: 0;
-    padding: 16px;
+    padding: 10px 0;
     text-align: left;
     transition: background-color 50ms ease-in;
 }
@@ -232,4 +237,54 @@
     text-align: center;
     transition: background-color 50ms ease-in;
 
+}
+
+
+
+/* text editor */
+.texteditor {
+    padding: 10px;
+}
+
+/* Icon Picker */
+.icon-picker-list {
+    height: 100px;
+    overflow: auto;
+    display: flex;
+    padding: 0px !important;
+    flex-wrap: wrap;
+}
+
+.icon-picker-list li {
+    padding: 0.25rem;
+}
+
+.icon-picker-list a {
+    display: inline-flex;
+    min-height: 30px;
+    /* width: 100%; */
+    height: 100%;
+    text-align: center;
+    padding: 1px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.selected-icon {
+    color: #fff !important;
+    background-color: #556ee6;
+}
+
+.icon-picker-list a:not(.selected-icon):hover {
+    background-color: #009E49;
+    color: #fff !important;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.icon-picker-list .fa {
+    font-size: 15px;
 }

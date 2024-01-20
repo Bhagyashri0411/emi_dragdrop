@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import { Iconlists } from "../../../CommonComponents/Iconlists";
-export const IconPicker = ({ iconName, setHeaderInfo, headerInfo, index }) => {
+import * as LucideIcons from 'lucide-react';
+
+
+export const IconPicker = ({ iconName, headercomponent, setPage, page, index }) => {
 
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredIcons, setFilteredIcons] = useState(Iconlists);
-    console.log(filteredIcons);
+
     const changeIcon = (e) => {
-        const updatedItems = [...headerInfo.items];
+        const updatedItems = [...headercomponent.items];
         updatedItems[index].icon = e;
-        setHeaderInfo({ ...headerInfo, items: updatedItems });
+
+        setPage([{
+            ...page[0],
+            components: {
+                headercomponent: {
+                    ...page[0].components.headercomponent,
+                    items: updatedItems
+                }
+            }
+        }]);
     }
 
     const handleSearchChange = (event) => {
@@ -16,7 +28,7 @@ export const IconPicker = ({ iconName, setHeaderInfo, headerInfo, index }) => {
         setSearchQuery(query);
 
         const filtered = Iconlists.filter((icon) =>
-            icon.icon.toLowerCase().includes(query)
+            icon.name.toLowerCase().includes(query)
         );
         setFilteredIcons(filtered);
     };
@@ -26,12 +38,12 @@ export const IconPicker = ({ iconName, setHeaderInfo, headerInfo, index }) => {
             <div className="secondDiv">
                 <div className="serach">
                     <div className="serachdivefirst">
-                        {/* <div className={'inputbox inputBoxFocus '}>
+                        <div className={'inputbox inputBoxFocus '}>
                             <input className="" placeholder="Search..." type="text" defaultValue
                                 value={searchQuery}
                                 onChange={handleSearchChange}
                             />
-                        </div> */}
+                        </div>
                         {/* <div className="box ">
                             <SearchIcon className='icon' />
                         </div> */}
@@ -41,8 +53,8 @@ export const IconPicker = ({ iconName, setHeaderInfo, headerInfo, index }) => {
             <ul className="icon-picker-list">
                 {filteredIcons.map((icon, index) => (
                     <li key={index} className="float-end" >
-                        <a className={"selected-icon"}
-                        // onClick={()=>changeIcon(icon.icon)}
+                        <a className={icon.name === iconName && "selected-icon"}
+                            onClick={() => changeIcon(icon.name)}
                         >
                             <icon.icon />
                         </a>
