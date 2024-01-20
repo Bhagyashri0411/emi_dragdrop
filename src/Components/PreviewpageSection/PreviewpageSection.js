@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-const PreviewpageSection = React.memo(({ code }) => {
-    return <div className='pt-3' dangerouslySetInnerHTML={{ __html: code }} />;
+const PreviewpageSection = React.memo(() => {
+  // Retrieve the saved code from localStorage
+  const savedCode = localStorage.getItem('savedCode');
 
-})
+  return <div className='preview' dangerouslySetInnerHTML={{ __html: savedCode }} />;
+});
+
 export default PreviewpageSection;

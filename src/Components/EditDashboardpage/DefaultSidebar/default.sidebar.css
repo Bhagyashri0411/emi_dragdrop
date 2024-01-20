@@ -1,0 +1,102 @@
+.btn-box {
+  margin-right: 10px;
+  position: absolute;
+  top: 0;
+  /* right: -42px;
+    background-color: #fff; */
+  margin: auto;
+}
+
+
+
+.sidebar-box {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.side {
+  position: relative;
+  height: 100%;
+  width: 250px;
+  transition: margin-left 0.4s ease;
+  overflow: hidden;
+}
+
+.side .text {
+  color: aliceblue;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 65px;
+  text-align: center;
+  background: #1e1e1e;
+  letter-spacing: 1px;
+}
+
+.side ul {
+  height: 100%;
+  width: 100%;
+  list-style: none;
+}
+
+.side ul li {
+  line-height: 50px;
+  border-bottom: 1px solid rgba(255, 255, 266, 0.1);
+  padding-left: 5px;
+  display: block;
+  width: 100%;
+}
+
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: absolute;
+  z-index: 1;
+  top: 25;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 12px;
+  cursor: pointer;
+  background-color: #111;
+  color: #000;
+  padding: 10px 5px;
+  border: none;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #fff;
+}
+
+
+
+#main {
+  transition: 0.5s;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  transform: translate(0px, 50%);
+}
