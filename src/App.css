@@ -1,5 +1,3 @@
-@import '~mdb-ui-kit/css/mdb.min.css';
-
 .mainLayout {
   display: flex;
   width: 100%;
@@ -11,13 +9,10 @@ img {
 }
 
 .fisrtColumn {
-
-  margin-left: -15px;
   background-color: var(--sidebarbg);
 }
 
-.thirdColumn {
-  margin-right: -12px;
+.rightSideBar {
   background-color: var(--white);
 }
 
@@ -25,11 +20,17 @@ img {
 /* main */
 .homecard {
   border-radius: 2px;
+  position: relative;
   height: 100vh;
   background-color: #fff;
 }
 
 .selected {
   outline: 2px solid red;
+}
+.containerbox {
+  border: 2px dashed #ccc;
+  padding: 10px;
+  margin: 10px;
 }
 

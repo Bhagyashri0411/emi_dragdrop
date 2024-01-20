@@ -1,108 +1,112 @@
-import React, { useState } from 'react';
-import HomeMainSection from './Dashboardpage/HomeMainSection';
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import HomeMainSection from './EditDashboardpage/HomeMainSection';
 import Sidebar from './MainComponents/Sidebar';
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import "./MainComponents/mainComponents.css";
-import RandomNumberGenerator from './CommonComponents/RandomNumberGenerator';
 import DefaultHeaderOption from './MainComponents/LeftSidebarOptionComponent/DefaultHeaderOption';
 import MainPageOptionComponent from './MainComponents/LeftSidebarOptionComponent/MainPageOption';
-import { Home } from 'lucide-react';
+import { NewSidebarcomponent, Newheadercomponent } from '../pageDetails';
+import DefaultSidebarOption from './MainComponents/LeftSidebarOptionComponent/DefaultSidebarOption';
 
 
-const Main = () => {
+const Main = forwardRef(({ page, setPage }, ref) => {
     const width = "350px";
 
-    // main page style
     const [propertyPage, setPropertyPage] = React.useState();
     // set for header component
     const [headerInfo, setHeaderInfo] = useState({})
 
-    // select header
-    const [selectedHeader, setSelectedHeader] = useState(null)
-
-    // function to add header
     const handleAddHeader = () => {
-        const header = {
-            id: `header${RandomNumberGenerator()}`,
-            mainHeader: 'Welcome!',
-            size: 12,
-            logo: "",
-            type: "text",
-            styles: {
-                bgColor: '#3498db', color: "#ffffff", padding: [10, 10],
-                fontSize: 18, fontWeight: 500,
-                width: 8, height: 5
+        setPage((prevPage) => [
+            {
+                ...prevPage[0],
+                components: {
+                    ...prevPage[0].components,
+                    headercomponent: Newheadercomponent
+                }
             },
-            items: [
-                { id: RandomNumberGenerator(), label: 'Home', icon: <Home />, type: true, border: [false, false] },
-                { id: RandomNumberGenerator(), label: 'About', icon: "fa fa-user", type: true, border: [false, false] },
-            ],
-        }
-        setHeaderInfo(header);
-    }
+        ]);
 
-
-    // Third bar
-    const [isTrue, setIsTrue] = useState(true);
-
-    const toggleValue = () => {
-        setIsTrue((prevValue) => !prevValue);
     };
 
+    const handleAddSidebarData = () => {
+        setPage((prevPage) => [
+            {
+                ...prevPage[0],
+                components: {
+                    ...prevPage[0].components,
+                    sidebarcomponent: NewSidebarcomponent
+                }
+            },
+        ]);
 
+    };
+    // Third bar
+    const [isTrue, setIsTrue] = useState([false, null]);
+
+    // Create a ref for the div
+    const myDivRef = useRef();
+
+    // Expose the ref to the parent component
+    useImperativeHandle(ref, () => ({
+        getHtmlContent: () => {
+            if (myDivRef.current) {
+                return myDivRef.current.innerHTML;
+            }
+        }
+    }));
     return (
         <>
             <div className='MainBackground'>
-                <div className='container-fluid'>
-                    <div className='mainLayout'>
-                        <div className='fisrtColumn'>
-                            <Sidebar
-                                // Header function
-                                handleAddHeader={handleAddHeader}
+                <div className='mainLayout'>
+                    <div className='fisrtColumn'>
+                        <Sidebar
+                            // Header function
+                            handleAddHeader={handleAddHeader}
+                            // sidebar function
+                            handleAddSidebarData={handleAddSidebarData}
+                        />
+                    </div>
+                    <div className='secondColumn' style={{ width: '100%' }}>
+                        <div className='pt-3' ref={myDivRef}>
+                            <HomeMainSection
+                                page={page}
+                                setPage={setPage}
+                                // Header
+                                setHeaderInfo={setHeaderInfo}
+                                headerInfo={headerInfo}
+                                isTrue={isTrue}
+                                setIsTrue={setIsTrue}
                             />
                         </div>
-                        <div className='secondColumn' style={{ width: '100%' }}>
-                            <div className='pt-3'>
-                                <HomeMainSection
-                                    propertyPage={propertyPage}
-                                    // Header
-                                    setHeaderInfo={setHeaderInfo}
-                                    headerInfo={headerInfo}
-                                    selectedHeader={selectedHeader}
-                                    setSelectedHeader={setSelectedHeader}
-                                />
-                            </div>
 
-                        </div>
-                        <i data-lucide="search"></i>
-                        <div className='thirdColumn' style={{ width: isTrue ? "25px" : width }}>
-                            <div className="subheading">
-                                <div className='icon' onClick={toggleValue}>
-                                    {isTrue ?
-                                        <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />
-                                    }
-                                </div>
-                            </div>
+                    </div>
+                    <i data-lucide="search"></i>
+                    <div className='rightSideBar' style={{ width: isTrue[0] ? "25px" : width }}>
 
-                            <div className={`${isTrue ? 'd-none' : 'd-block'}`}>
-                                {selectedHeader ? <DefaultHeaderOption headerInfo={headerInfo} setHeaderInfo={setHeaderInfo} />
-                                    :
-
+                        <div className="noBorderTop">
+                            <div className={`${isTrue[0] ? 'd-none' : 'd-block'}`}>
+                                {isTrue[1] === "header" &&
+                                    <DefaultHeaderOption page={page} setPage={setPage} />
+                                }
+                                {isTrue[1] === "sidebar" &&
+                                    <DefaultSidebarOption page={page} setPage={setPage} />
+                                }
+                                {isTrue[1] === null &&
                                     <MainPageOptionComponent
                                         setPropertyPage={setPropertyPage}
                                         propertyPage={propertyPage}
+                                        page={page}
+                                        setPage={setPage}
                                     />
                                 }
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </>
     )
-}
+})
 
 
 export default Main
