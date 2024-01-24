@@ -29,7 +29,7 @@ const Sidebar = (props) => {
                         </li>
                         <li className={`listyle mt-3 ${clickedDiv === 'div1' ? 'checked' : ''}`}
                             onClick={() => handleDivClick('div1')}>
-                            <div className="lifirstDiv border" onClick={props.handleAddSidebarData}>
+                            <div className="lifirstDiv border" onClick={props.handleAddSidebar}>
                                 <div className="liIcon text-white" >
                                     <PanelRightOpen />
                                 </div>

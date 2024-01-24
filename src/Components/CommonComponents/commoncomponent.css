@@ -29,21 +29,16 @@
 
 
 .section-header {
-    background-color: transparent;
     font-weight: 500;
     display: flex;
     transition: none 0s ease 0s;
     outline: none;
     width: 100%;
-    -webkit-box-pack: justify;
     justify-content: space-between;
-    -webkit-box-align: center;
     align-items: center;
 }
 
-.headerClickable .section-header .pt-btn {
-    color: #999999;
-}
+
 
 .pt-btn {
     outline: none;
@@ -59,8 +54,7 @@
 }
 
 .pt-btn {
-    height: 32px;
-    width: 32px;
+    padding: 0.1rem 0.2rem;
     border-radius: 4px;
     font-size: 12px;
     /* border: 0; */
@@ -71,4 +65,34 @@
 
 .pt-icon>svg:not([class*="stroke"]) {
     fill: currentcolor;
+}
+
+/* WidthAndHeight */
+.size {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.pt-input {
+    position: relative;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    border-bottom: 1px solid #000;
+}
+
+.pt-input input {
+    width: 100% !important;
+}
+
+.pt-input input,
+.pt-input select {
+    outline: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    text-align: center;
+    border: 0;
+    width: 100%;
 }

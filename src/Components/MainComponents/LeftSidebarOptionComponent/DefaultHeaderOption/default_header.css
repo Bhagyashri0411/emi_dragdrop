@@ -80,7 +80,6 @@
     color: var(--puck-color-grey-07);
     display: flex;
     margin-right: 4px;
-    padding-left: 4px;
 }
 
 .Input-labelIcon .icon {
@@ -287,4 +286,12 @@
 
 .icon-picker-list .fa {
     font-size: 15px;
+}
+
+.disabledDiv {
+    pointer-events: none;
+    opacity: 0.4;
+}
+.panel-title{
+    font-size: 0.8rem;
 }

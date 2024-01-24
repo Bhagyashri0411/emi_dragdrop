@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { ConfirmToast } from 'react-confirm-toast'
+import Addpagemodel from "../CommonComponents/Addpagemodel";
 
 
-const Header = React.memo(({getHtmlContentFromChild}) => {
+const Header = React.memo(({ getHtmlContentFromChild, page, setPage }) => {
+
+    const myFunction = () => {
+        getHtmlContentFromChild()
+    };
 
     return (
         <>
@@ -11,12 +17,22 @@ const Header = React.memo(({getHtmlContentFromChild}) => {
                 <div className='create-header'>
                     <Link to={"/preview"}>
 
-                        <button  >
+                        <button className="submitbutton btn btn-primary" >
                             Preview
                         </button>
                     </Link>
+                    <Addpagemodel page={page} setPage={setPage} />
                 </div>
-                <button className="btn btn-success" onClick={getHtmlContentFromChild}>Save</button>
+                <ConfirmToast customFunction={myFunction}
+                    customCancel='Reject'
+                    customConfirm='Confirm'
+                    message='Do you want to save?'
+                    position='top-right'
+                    showCloseIcon={false}
+                    theme='snow'
+                >
+                    <button className="btn btn-success">Save</button>
+                </ConfirmToast>
             </div>
         </>
     )

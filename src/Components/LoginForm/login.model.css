@@ -1,0 +1,16 @@
+.shadow {
+    border-radius: 0;
+}
+
+.form-control {
+    width: auto;
+}
+
+.topborder {
+    border: 3px solid var(--puck-color-azure-06);
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.submitbutton{
+    background-color: var(--puck-color-azure-03);
+}
