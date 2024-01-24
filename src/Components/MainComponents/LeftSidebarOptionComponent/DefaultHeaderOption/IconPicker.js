@@ -11,16 +11,19 @@ export const IconPicker = ({ iconName, headercomponent, setPage, page, index }) 
     const changeIcon = (e) => {
         const updatedItems = [...headercomponent.items];
         updatedItems[index].icon = e;
-
-        setPage([{
-            ...page[0],
-            components: {
-                headercomponent: {
-                    ...page[0].components.headercomponent,
-                    items: updatedItems
-                }
-            }
-        }]);
+        
+        setPage((prevPage) => {
+            return prevPage.map((itempage) => ({
+                ...itempage,
+                components: {
+                    ...itempage.headercomponent,
+                    headercomponent: {
+                        ...itempage.components.headercomponent,
+                        ...updatedItems,
+                    },
+                },
+            }))
+        })
     }
 
     const handleSearchChange = (event) => {

@@ -6,7 +6,7 @@ export default function CollapseAndExpand({ name, contentComponent: ContentCompo
 
     return (
         <>
-            <div className=" section-header">
+            <div className={`section-header ${expand && "my-1"}`}>
                 <div className=" panel-title-container">
                     <span className=" panel-title">{name}</span>
                 </div>

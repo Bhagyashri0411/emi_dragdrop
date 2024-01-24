@@ -3,27 +3,28 @@ import DefaultHeader from "./DefaultHeader";
 import DefaultSidebar from "./DefaultSidebar";
 
 const HomeMainSection = (props) => {
+    
     return (
         <div className='containerbox' id='code'>
-            {props.page.map(pageItem =>
-            (
-                <div className="col-md-12" key={pageItem.id}>
-                    <div className="homecard"
-                        style={{
-                            backgroundColor: pageItem.mainPageStyles?.bgColor,
-                        }}
-                    >
-                        {pageItem.components && Object.keys(pageItem.components.headercomponent).length !== 0 &&
-                            <DefaultHeader page={pageItem.components} setIsTrue={props.setIsTrue} />
-                        }
+            {/* {props.page.map(pageItem =>
+            ( */}
+            <div className="col-md-12" key={props.page.id}>
+                <div className="homecard"
+                    style={{
+                        backgroundColor: props.singlePage.mainPageStyles?.bgColor,
+                    }}
+                >
+                    {props.singlePage.components && Object.keys(props.singlePage.components.headercomponent).length !== 0 &&
+                        <DefaultHeader page={props.singlePage.components} setIsTrue={props.setIsTrue} isTrue={props.isTrue} />
+                    }
 
-                        {/* {pageItem.components && Object.keys(pageItem.components.sidebarcomponent).length !== 0 &&
-                            <DefaultSidebar sidebarcomponent={pageItem.components.sidebarcomponent} setIsTrue={props.setIsTrue} />
-                        } */}
+                    {props.singlePage.components && Object.keys(props.singlePage.components.sidebarcomponent).length !== 0 &&
+                        <DefaultSidebar page={props.singlePage.components} setIsTrue={props.setIsTrue} isTrue={props.isTrue} />
+                    }
 
-                    </div>
                 </div>
-            ))}
+            </div>
+            {/* ))} */}
         </div>
     )
 }

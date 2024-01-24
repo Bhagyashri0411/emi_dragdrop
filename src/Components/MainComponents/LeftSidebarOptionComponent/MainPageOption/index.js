@@ -2,16 +2,26 @@ import React, { useState } from 'react';
 import ColorInput from '../../../CommonComponents/ColorInput';
 import { ChevronRight } from 'lucide-react';
 
-export default function MainPageOptionComponent(props) {
+export default function MainPageOptionComponent({ singlePage, page, setPage }) {
 
     const handleEditBack = (e) => {
-        const updatedPage = [{
-            ...props.page[0], mainPageStyles: {
-                ...props.page[0].mainPageStyles,
-                bgColor: e.target.value
+        const updatedPage = {
+            ...singlePage,
+            mainPageStyles: {
+                ...singlePage.mainPageStyles,
+                bgColor: e.target.value,
+            },
+        };
+
+        const updatedPages = page.map((itempage) => {
+            if (itempage.id === updatedPage.id) {
+                return updatedPage;
+            } else {
+                return itempage;
             }
-        }];
-        props.setPage(updatedPage);
+        });
+        
+        setPage(updatedPages);
     };
 
     return (
@@ -31,7 +41,7 @@ export default function MainPageOptionComponent(props) {
             <div className='blockflex mt-2'>
                 <h6>Background</h6>
             </div>
-            <ColorInput bgval={props.page[0].mainPageStyles.bgColor} funOnchange={handleEditBack} />
+            <ColorInput bgval={singlePage.mainPageStyles.bgColor} funOnchange={handleEditBack} />
         </>
     );
 }
