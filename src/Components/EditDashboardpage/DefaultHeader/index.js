@@ -78,7 +78,7 @@ const DefaultHeader = ({ page, setIsTrue, isTrue }) => {
                                                         // onMouseEnter={(e) => { e.stopPropagation(); handleOpenMenu(setMenuElImage, e) }}
                                                         />
                                                         :
-                                                        Iconlists.map((icon, index) =>
+                                                        Iconlists.map((icon) =>
                                                             icon.name === item.icon && <icon.icon />
                                                         )
                                                 }

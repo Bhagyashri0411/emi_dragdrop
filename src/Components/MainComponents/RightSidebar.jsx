@@ -8,12 +8,12 @@ export default function RightSidebar({ isTrue, singlePage, page, setPage }) {
     return (
         <div className="noBorderTop">
             <div className={`${isTrue[0] ? 'd-none' : 'd-block'}`}>
-                {isTrue[1] === "header" &&
+                {/* {isTrue[1] === "header" &&
                     <DefaultHeaderOption page={page} setPage={setPage} singlePage={singlePage}/>
-                }
-                {/* {isTrue[1] === "sidebar" &&
-                    <DefaultSidebarOption page={page} setPage={setPage} />
                 } */}
+                {isTrue[1] === "sidebar" &&
+                    <DefaultSidebarOption page={page} setPage={setPage} singlePage={singlePage} />
+                }
                 {isTrue[1] === null &&
                     <MainPageOptionComponent
                         singlePage={singlePage}
