@@ -1,31 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 // 8080544375
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import "./login.model.css"
 import { ToastContainer, toast } from "react-toastify";
 import Loadercomponent from "../CommonComponents/Loadercompoent";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { login } from "../../Redux/Action";
 
-export default function Login() {
-    const [email, setEmail] = React.useState('');
+export default function Login({location, history}) {
+    const [userName, setUserName] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [loading, setLoading] = React.useState(false);
+
+    const dispatch = useDispatch();
+    const redirect = location.search ? location.search.split("=")[1] : "/";
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { error, loading, userInfo } = userLogin;
+
+    useEffect(() => {
+        if (userInfo) {
+            history.push(redirect)
+        }
+    }, [userInfo, history, password]);
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        if (!email || !password) {
-            setLoading(true);
-            setTimeout(() => {
-                toast.error('Please fill the information', { draggable: true });
-                setLoading(false)
-            }, 2000);
-        }
-        else
-            toast.success('Submit form successfully', { draggable: true });
-
-        setEmail('');
-        setPassword('');
-
+        dispatch(login(userName, password))
     };
     return (
         <Container>
@@ -40,14 +43,14 @@ export default function Login() {
                                 <Form onSubmit={handleSubmit}>
                                     <div className="d-grid mb-3">
                                         <Form.Label>
-                                            Email address
+                                            Username
                                         </Form.Label>
-                                        <Form.Control type="email" placeholder="Enter email" />
+                                        <Form.Control type="text" placeholder="Username*" value={userName} onChange={(e) => setUserName(e.target.value)} />
                                     </div>
 
                                     <div className="d-grid mb-3">
                                         <Form.Label>Password</Form.Label>
-                                        <Form.Control type="password" placeholder="Password" />
+                                        <Form.Control type="password" placeholder="Password*" value={password} onChange={(e)=> setPassword(e.target.value)} />
                                     </div>
                                     <div className="d-grid">
                                         <Button className="submitbutton" type="submit">

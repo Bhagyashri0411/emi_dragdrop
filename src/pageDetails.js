@@ -30,29 +30,7 @@ export const NewSidebarcomponent = {
     component: "Sidebar",
     id: "sidebar",
     items: [
-        {
-            icon: "Home",
-            href: "/",
-            itemname: "Home",
-            id: 0,
-            type: true,
-            subItems: [
-                {
-                    icon: "User",
-                    href: "/about",
-                    itemname: "About",
-                    id: 1,
-                    type: true
-                },
-                {
-                    icon: "User",
-                    href: "/about",
-                    itemname: "About",
-                    id: 2,
-                    type: true
-                }
-            ]
-        },
+       
         {
             icon: "User",
             href: "/about",

@@ -267,7 +267,7 @@ export default function DefaultHeaderOption({ singlePage, page, setPage }) {
                                                                                             onClick={() => updateItems(index, "icon", "type")}>icon</div>
                                                                                     </div>
 
-                                                                                    <div className="Input-radio" htmlFor={`uploadItem${item.id}`}>
+                                                                                    <label className="Input-radio" for={`uploadItem${item.id}`}>
                                                                                         <div className={`Input-radioInner ${item.type === "img" && 'active'}`}
                                                                                             onClick={() => updateItems(index, "img", "type")}><Upload />
                                                                                         </div>
@@ -275,7 +275,7 @@ export default function DefaultHeaderOption({ singlePage, page, setPage }) {
                                                                                         <input type='file' id={`uploadItem${item.id}`} name={`uploadItem${item.id}`} className='d-none'
                                                                                             accept="image/*" onChange={(e) => updateItems(index, e.target.files[0], "img")}
                                                                                         />
-                                                                                    </div>
+                                                                                    </label>
 
                                                                                 </div>
                                                                             </div>
@@ -321,7 +321,7 @@ export default function DefaultHeaderOption({ singlePage, page, setPage }) {
                                                                                         <option value={item.pageLink} key={key}>{item.pageName}</option>
                                                                                     )}
                                                                                 </select>
-                                                                                <Addpagemodel page={page} setPage={setPage}/>
+                                                                                <Addpagemodel page={page} setPage={setPage} />
                                                                             </div>
                                                                             <div className="Input">
                                                                                 <div className="Input-label pb-0 justify-content-between">

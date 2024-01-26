@@ -14,9 +14,9 @@ const HomeMainSection = (props) => {
                         backgroundColor: props.singlePage.mainPageStyles?.bgColor,
                     }}
                 >
-                    {props.singlePage.components && Object.keys(props.singlePage.components.headercomponent).length !== 0 &&
+                    {/* {props.singlePage.components && Object.keys(props.singlePage.components.headercomponent).length !== 0 &&
                         <DefaultHeader page={props.singlePage.components} setIsTrue={props.setIsTrue} isTrue={props.isTrue} />
-                    }
+                    } */}
 
                     {props.singlePage.components && Object.keys(props.singlePage.components.sidebarcomponent).length !== 0 &&
                         <DefaultSidebar page={props.singlePage.components} setIsTrue={props.setIsTrue} isTrue={props.isTrue} />
