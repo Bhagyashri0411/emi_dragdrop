@@ -1,4 +1,4 @@
-import { ChevronRight, Eclipse, GanttChartSquare, GripVertical, Link2OffIcon, Plus, Trash2, Type,Search } from 'lucide-react'
+import { ChevronRight, Eclipse, GanttChartSquare, GripVertical, Link2OffIcon, Plus, Trash2, Type, Search, CheckCircle } from 'lucide-react'
 import React, { useState } from 'react'
 import CollapseAndExpand from '../../../CommonComponents/CollapseAndExpand'
 import ColorInput from '../../../CommonComponents/ColorInput'
@@ -6,7 +6,9 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import Addpagemodel from '../../../CommonComponents/Addpagemodel';
 import { IconPicker } from '../../LeftSidebarOptionComponent/DefaultHeaderOption/IconPicker';
 
-export default function DefaultSidebarOption({ singlePage, page, setPage }) {
+export default function DefaultSidebarOption({ singlePage, page, setPage, handleRadioChange, selectedPosition, ...props }) {
+  console.log(handleRadioChange);
+  console.log(props.handleRadioChange);
   const sidebarcomponent = page && singlePage?.components.sidebarcomponent;
 
   const [visibleBlock, setVisibleBlock] = useState(null)
@@ -36,7 +38,8 @@ export default function DefaultSidebarOption({ singlePage, page, setPage }) {
 
     const updatedItems = Array.from(sidebarcomponent.items);
     const [draggedItem] = updatedItems.splice(result.source.index, 1);
-    updatedItems.slice(result.destination.index, 0, draggedItem);
+    updatedItems.splice(result.destination.index, 0, draggedItem);
+
 
     updatePageState({ items: updatedItems });
   }
@@ -57,6 +60,15 @@ export default function DefaultSidebarOption({ singlePage, page, setPage }) {
         itemname: "New Item",
         id: sidebarcomponent.items.length === 0 ? 0 : Math.max(...sidebarcomponent.items.map(item => item.id)) + 1,
         type: "text",
+        // submenu: [
+        //   {
+        //     id: 11,
+        //     icon: "SubIcon",
+        //     itemname: "Sub Item 1",
+        //     href: ""
+        //   },
+        //   // Add more sub items as needed
+        // ]
       },
     ];
 
@@ -79,6 +91,13 @@ export default function DefaultSidebarOption({ singlePage, page, setPage }) {
     updatedItems[index][property] = val;
     updatePageState({ items: updatedItems });
 
+  };
+  const labelStyled = {
+    fontSize: '0.8rem',
+    fontWeight: '600',
+    color: '#5A5A5A',
+    padding: '5px',
+    margin: '5px'
   };
   return (
     <>
@@ -120,7 +139,24 @@ export default function DefaultSidebarOption({ singlePage, page, setPage }) {
               />
 
             </div>
+            <div className='Position'>
+              <div className="Input">
+                <div className="Input-label">
+                  <div className="Input-labelIcon">
+                    <CheckCircle />
+                  </div>Position</div>
+              </div>
+              <div className='Three' style={{ marginLeft: '20px' }}>
+                <input type="radio" name="position" id="leftPosition" value="left" checked={props.selectedPosition === 'left'} onChange={handleRadioChange} />
+                <label style={labelStyled} htmlFor="leftPosition" >Left</label>
 
+                <input type="radio" name="position" id="rightPosition" value="top" checked={props.selectedPosition === 'top'} onChange={handleRadioChange} />
+                <label style={labelStyled} htmlFor="rightPosition">Top</label>
+
+                <input type="radio" name="position" id="topPosition" value="right" checked={props.selectedPosition === 'right'} onChange={handleRadioChange} />
+                <label style={labelStyled} htmlFor="topPosition">Right</label>
+              </div>
+            </div>
             <div className="Input">
               <div className="Input-label">
                 <div className="Input-labelIcon">
@@ -165,50 +201,82 @@ export default function DefaultSidebarOption({ singlePage, page, setPage }) {
                                   <div className="ArrayFieldItem-body">
                                     <fieldset className="ArrayFieldItem-fieldset">
                                       <div className="Input">
-                                      <div className="Input-label">
-                                        <div className="Input-labelIcon">
-                                          <Search />
-                                        </div>Icon</div>
-                                      <IconPicker index={index} iconName={item.icon} sidebarcomponent={sidebarcomponent} page={page} setPage={setPage} />
+                                        <div className="Input-label">
+                                          <div className="Input-labelIcon">
+                                            <Search />
+                                          </div>Icon</div>
+                                        <IconPicker index={index} iconName={item.icon} sidebarcomponent={sidebarcomponent} page={page} setPage={setPage} />
 
 
-                                      <div className="Input-label">
-                                        <div className="Input-labelIcon">
-                                          <Type />
-                                        </div>label</div>
-                                      <input className="Input-input" type="text" value={item.itemname}
-                                        onChange={(e) => { updateItems(index, e.target.value, "itemname"); }} />
+                                        <div className="Input-label">
+                                          <div className="Input-labelIcon">
+                                            <Type />
+                                          </div>label</div>
+                                        <input className="Input-input" type="text" value={item.itemname}
+                                          onChange={(e) => { updateItems(index, e.target.value, "itemname"); }} />
 
-                                      <div className="Input-label mt-2">
-                                        <div className="Input-labelIcon">
-                                          <Link2OffIcon />
-                                        </div>Href</div>
+                                        <div className="Input-label mt-2">
+                                          <div className="Input-labelIcon">
+                                            <Link2OffIcon />
+                                          </div>Href</div>
+                                        <select className='Input-input'
+                                          value={item.href}
+                                          onChange={(e) => {
+                                            updateItems(index, e.target.value, "href");
+                                          }}
+                                        >
+                                          {page.map((item, key) =>
+                                            <option value={item.pageLink} key={key}>{item.pageName}</option>
+                                          )}
+                                        </select>
+                                        <Addpagemodel page={page} setPage={setPage} />
+                                      </div>
+                
+                                      <div className="Input">
+              <div className="Input-label">
+                <div className="Input-labelIcon">
+               
+                </div>Sidebar SubItems 1</div>
+                <div className="Input-label">
+                <div className="Input-labelIcon">
+             
+                </div>Sidebar SubItems 2</div>
 
-                                      <input className="Input-input" type="text" value={item.href}
-                                        onChange={(e) => { updateItems(index, e.target.value, "href") }} />
-                                      <Addpagemodel page={page} setPage={setPage} />
-                                  </div>
+                <button className="ArrayField-addButton"
+                  onClick={addItem}
+                >
+                
+                  <Plus />
+                </button>
+                </div>
+
+                                      {/* <input className="Input-input" type="text" value={item.href}
+                                          onChange={(e) => { updateItems(index, e.target.value, "href") }} />
+                                        <Addpagemodel page={page} setPage={setPage} />
+                                      </div> */}
 
                                     </fieldset>
+
                                   </div>
                                 }
+                              </div>
+                            )}
+                          </Draggable>
+                        ))}
+                        {provided.placeholder}
                       </div>
                     )}
-                  </Draggable>
-                        ))}
-                  {provided.placeholder}
+                  </Droppable>
+                </DragDropContext>
+                <button className="ArrayField-addButton"
+                  onClick={addItem}
+                >
+                
+                  <Plus />
+                </button>
               </div>
-                    )}
-            </Droppable>
-          </DragDropContext>
-          <button className="ArrayField-addButton"
-            onClick={addItem}
-          >
-            <Plus />
-          </button>
-        </div>
-      </div>
-    </>
+            </div>
+          </>
         </div >
       </div >
     </>

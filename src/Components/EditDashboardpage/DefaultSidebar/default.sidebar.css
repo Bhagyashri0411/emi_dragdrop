@@ -1,14 +1,27 @@
-.btn-box {
-  margin-right: 10px;
-  position: absolute;
-  top: 0;
-  /* right: -42px;
-    background-color: #fff; */
-  margin: auto;
+
+
+.Btn-1{
+  /* transition: margin-right 0.4s ease; */
+  position:absolute;
+  color: white;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  
 }
-
-
-
+.Btn-2{
+  position:absolute;
+  color: white;
+  /* right:-2; */
+  top: 48%;
+  transform: translateY(-50%);
+}
+.Btn-3{
+  position:absolute;
+  color: white;
+  right: 50%;
+  transform: translateY(-50%);
+}
 .sidebar-box {
   position: relative;
   overflow: hidden;
@@ -47,17 +60,18 @@
   width: 100%;
 }
 
-
-.sidebar {
+/* 
+ .sidebar {
   height: 100%;
   width: 0;
   position: absolute;
-  z-index: 1;
+  z-index: 2; 
   top: 25;
   left: 0;
+  right: 0;
   overflow-x: hidden;
   transition: 0.5s;
-}
+}  */
 
 .sidebar a {
   padding: 8px 8px 8px 32px;
@@ -71,15 +85,14 @@
   color: #f1f1f1;
 }
 
-.sidebar .closebtn {
+/* .sidebar .closebtn {
   position: absolute;
   top: 0;
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
-}
-
-.openbtn {
+} */
+ .openbtn {
   font-size: 12px;
   cursor: pointer;
   background-color: #111;
@@ -89,7 +102,7 @@
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #fff;
-}
+} 
 
 
 
@@ -100,3 +113,29 @@
   bottom: 0px;
   transform: translate(0px, 50%);
 }
+
+.chevron {
+  position: absolute;
+  top: 10px; /* Adjust top position as needed */
+  display: none; /* Initially hide */
+}
+
+/* .top {
+  .chevron.top {
+    display: block;
+   
+  }
+}
+
+.right {
+  .chevron.right {
+    display: block;
+   
+}
+
+.left {
+  .chevron.left {
+    display: block;
+  
+  }
+} */

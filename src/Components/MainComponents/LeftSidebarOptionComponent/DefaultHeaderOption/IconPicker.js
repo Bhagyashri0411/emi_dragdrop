@@ -3,22 +3,40 @@ import { Iconlists } from "../../../CommonComponents/Iconlists";
 import * as LucideIcons from 'lucide-react';
 
 
-export const IconPicker = ({ iconName, headercomponent, setPage, page, index }) => {
+export const IconPicker = ({ iconName, headercomponent,sidebarcomponent, setPage, page, index }) => {
 
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredIcons, setFilteredIcons] = useState(Iconlists);
 
+    // const changeIcon = (e) => {
+    //     const updatedItems = [...headercomponent.items];
+    //     updatedItems[index].icon = e;
+        
+    //     setPage((prevPage) => {
+    //         return prevPage.map((itempage) => ({
+    //             ...itempage,
+    //             components: {
+    //                 ...itempage.headercomponent,
+    //                 headercomponent: {
+    //                     ...itempage.components.headercomponent,
+    //                     ...updatedItems,
+    //                 },
+    //             },
+    //         }))
+    //     })
+    // }
+
     const changeIcon = (e) => {
-        const updatedItems = [...headercomponent.items];
+        const updatedItems = [...sidebarcomponent.items];
         updatedItems[index].icon = e;
         
         setPage((prevPage) => {
             return prevPage.map((itempage) => ({
                 ...itempage,
                 components: {
-                    ...itempage.headercomponent,
-                    headercomponent: {
-                        ...itempage.components.headercomponent,
+                    ...itempage.sidebarcomponent,
+                    sidebarcomponent: {
+                        ...itempage.components.sidebarcomponent,
                         ...updatedItems,
                     },
                 },

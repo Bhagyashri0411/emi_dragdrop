@@ -37,7 +37,16 @@ export const NewSidebarcomponent = {
             itemname: "About",
             id: 1,
             type: true,
-            subItems: []
+            subItems: [
+                {
+                    icon: "User",
+                    href: "/about",
+                    itemname: "About",
+                    id: 11,
+                    type: true,
+                    subItems: []
+                }
+            ]
         }
     ],
     styles: {
@@ -45,5 +54,6 @@ export const NewSidebarcomponent = {
         fontSize: 15,
         gap: 5,
         bgColor: "#3498db",
-    }
+    },
+    position:'right',
 }
